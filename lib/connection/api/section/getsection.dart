@@ -10,7 +10,7 @@ class GetSectionApi {
   Future<List<Section>> getsectionbd(String pageview) async {
     final client = http.Client();
     try {
-      var url = Uri.http(
+      var url = Uri.https(
         HostingRMC.hostingprueba,
         URLSDirection.urlpruebasection,
         {'pageview': pageview},
@@ -40,7 +40,7 @@ class GetSectionApi {
     final client = http.Client();
     try {
       var url =
-          Uri.http(HostingRMC.hostingprueba, URLSDirection.urlpruebasection);
+          Uri.https(HostingRMC.hostingprueba, URLSDirection.urlpruebasection);
       final jsondecodemap = section.toJson();
       final jsonda = json.encode(jsondecodemap);
       debugPrint(jsondecodemap.toString());
@@ -68,7 +68,7 @@ class GetSectionApi {
   Future<bool> removeItemSectionDatabase(String id) async {
     final client = http.Client();
     try {
-      var url = Uri.http(HostingRMC.hostingprueba,
+      var url = Uri.https(HostingRMC.hostingprueba,
           URLSDirection.urlpruebasection2, {'id': id});
       debugPrint(url.toString());
 
@@ -97,7 +97,7 @@ class GetSectionApi {
 
     try {
       var url =
-          Uri.http(HostingRMC.hostingprueba, URLSDirection.urlpruebasection2);
+          Uri.https(HostingRMC.hostingprueba, URLSDirection.urlpruebasection2);
       final jsondecodemap = section.toJson();
       final jsonda = json.encode(jsondecodemap);
       var response = await client.put(url, body: jsonda);

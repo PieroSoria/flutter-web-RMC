@@ -10,7 +10,7 @@ class SectionContainer extends StatefulWidget {
   final String contenido;
   final bool reves;
   final Color background;
-  final String nombredelproducto;
+  final Products product;
   final double ancho;
   final double alto;
   final VoidCallback funcion;
@@ -21,7 +21,7 @@ class SectionContainer extends StatefulWidget {
     required this.reves,
     required this.subtitulo,
     required this.background,
-    required this.nombredelproducto,
+    required this.product,
     required this.funcion,
     required this.ancho,
     required this.alto,
@@ -33,31 +33,10 @@ class SectionContainer extends StatefulWidget {
 
 class _SectionContainerState extends State<SectionContainer> {
   final controllerproduct = Get.put(ControllerProducts());
-  Products products = Products(
-    id: 'id',
-    nombre: 'nombre',
-    comentario: 'comentario',
-    description: 'description',
-    categoria: 'categoria',
-    subcategoria: 'subcategoria',
-    precio: 'precio',
-    puntaje: 'puntaje',
-    vendidos: 'vendidos',
-    urlimagen: 'urlimagen',
-  );
 
   @override
   void initState() {
     super.initState();
-    inicializar();
-  }
-
-  Future<void> inicializar() async {
-    final data =
-        await controllerproduct.getproductbynombre(widget.nombredelproducto);
-    setState(() {
-      products = data;
-    });
   }
 
   @override
@@ -101,73 +80,65 @@ class _SectionContainerState extends State<SectionContainer> {
                   ),
                 ),
               ),
-              products.urlimagen != "urlimagen"
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        widget.reves
-                            ? Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 50),
-                                child: SizedBox(
-                                  width: 600,
-                                  child: Text(
-                                    widget.contenido,
-                                    textAlign: TextAlign.left,
-                                    style: const TextStyle(
-                                        color: Colors.black, fontSize: 17),
-                                  ),
-                                ),
-                              )
-                            : Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 50),
-                                child: SizedBox(
-                                  width: 300,
-                                  height: 350,
-                                  child: CardProductMuestra(
-                                    urlimagen: products.urlimagen,
-                                    nombreproduct: widget.nombredelproducto,
-                                    namebutton: "Leer Mas",
-                                    funcion: widget.funcion,
-                                    categoria: products.categoria,
-                                  ),
-                                ),
-                              ),
-                        widget.reves
-                            ? Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 50),
-                                child: SizedBox(
-                                  width: 300,
-                                  height: 350,
-                                  child: CardProductMuestra(
-                                    urlimagen: products.urlimagen,
-                                    nombreproduct: widget.nombredelproducto,
-                                    namebutton: "Leer Mas",
-                                    funcion: widget.funcion,
-                                    categoria: products.categoria,
-                                  ),
-                                ),
-                              )
-                            : Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 50),
-                                child: SizedBox(
-                                  width: 600,
-                                  child: Text(
-                                    widget.contenido,
-                                    textAlign: TextAlign.left,
-                                    style: const TextStyle(
-                                        color: Colors.black, fontSize: 18),
-                                  ),
-                                ),
-                              )
-                      ],
-                    )
-                  : const Center(
-                      child: Text("Cargando datos "),
-                    )
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  widget.reves
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 50),
+                          child: SizedBox(
+                            width: 600,
+                            child: Text(
+                              widget.contenido,
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 17),
+                            ),
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 50),
+                          child: SizedBox(
+                            width: 300,
+                            height: 350,
+                            child: CardProductMuestra(
+                              urlimagen: widget.product.urlimagen,
+                              nombreproduct: widget.product.nombre,
+                              namebutton: "Leer Mas",
+                              funcion: widget.funcion,
+                              categoria: widget.product.categoria,
+                            ),
+                          ),
+                        ),
+                  widget.reves
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 50),
+                          child: SizedBox(
+                            width: 300,
+                            height: 350,
+                            child: CardProductMuestra(
+                              urlimagen: widget.product.urlimagen,
+                              nombreproduct: widget.product.nombre,
+                              namebutton: "Leer Mas",
+                              funcion: widget.funcion,
+                              categoria: widget.product.categoria,
+                            ),
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 50),
+                          child: SizedBox(
+                            width: 600,
+                            child: Text(
+                              widget.contenido,
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 18),
+                            ),
+                          ),
+                        )
+                ],
+              )
             ],
           ),
         ),

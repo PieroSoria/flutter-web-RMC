@@ -36,11 +36,8 @@ class _FormSectionState extends State<FormSection> {
   final subtitulo = TextEditingController(text: '');
   final contenido = TextEditingController(text: "");
   final reves = TextEditingController(text: "");
-  final nombreproduct = TextEditingController(text: "");
-  final categoria = TextEditingController(text: "");
-  final subcategoria = TextEditingController(text: "");
-  final beneficios = TextEditingController(text: "");
-  final caracteristicas = TextEditingController(text: "");
+  final idproducto = TextEditingController(text: "");
+
   final ancho = TextEditingController(text: "");
   final alto = TextEditingController(text: "");
   final usescroll = TextEditingController(text: "");
@@ -158,10 +155,10 @@ class _FormSectionState extends State<FormSection> {
                           titulo: 'Cambiar de lados',
                         ),
                         InputFormCustom(
-                          controllerform: nombreproduct,
+                          controllerform: idproducto,
                           width: 400,
                           height: 50,
-                          titulo: 'Nombre de producto',
+                          titulo: 'id de producto',
                         ),
                         InputFormCustom(
                           controllerform: ancho,
@@ -185,12 +182,6 @@ class _FormSectionState extends State<FormSection> {
                           width: 400,
                           height: 50,
                           titulo: 'Titulo del Section',
-                        ),
-                        InputFormCustom(
-                          controllerform: categoria,
-                          width: 400,
-                          height: 50,
-                          titulo: 'Categoria del producto',
                         ),
                         const Text(
                           "Usar Scroll",
@@ -232,12 +223,6 @@ class _FormSectionState extends State<FormSection> {
                           height: 50,
                           titulo: 'titulo del Section ',
                         ),
-                        InputFormCustom(
-                          controllerform: categoria,
-                          width: 400,
-                          height: 50,
-                          titulo: 'Categoria del producto',
-                        ),
                       ],
                     );
                   case "Promocion":
@@ -274,12 +259,6 @@ class _FormSectionState extends State<FormSection> {
                               borderRadius: BorderRadius.circular(10),
                             )),
                           ),
-                        ),
-                        InputFormCustom(
-                          controllerform: categoria,
-                          width: 400,
-                          height: 50,
-                          titulo: 'Categoria del Producto',
                         ),
                       ],
                     );
@@ -324,12 +303,6 @@ class _FormSectionState extends State<FormSection> {
                           height: 50,
                           titulo: 'cambiar de lados',
                         ),
-                        InputFormCustom(
-                          controllerform: nombreproduct,
-                          width: 400,
-                          height: 50,
-                          titulo: 'nombre del producto',
-                        )
                       ],
                     );
                   case "Diferencia":
@@ -367,12 +340,6 @@ class _FormSectionState extends State<FormSection> {
                             )),
                           ),
                         ),
-                        InputFormCustom(
-                          controllerform: nombreproduct,
-                          width: 400,
-                          height: 50,
-                          titulo: 'Nombre del Producto',
-                        )
                       ],
                     );
                   case "Caracteristicas":
@@ -411,10 +378,10 @@ class _FormSectionState extends State<FormSection> {
                           ),
                         ),
                         InputFormCustom(
-                          controllerform: nombreproduct,
+                          controllerform: idproducto,
                           width: 400,
                           height: 50,
-                          titulo: 'Nombre del Producto',
+                          titulo: 'Id del Producto',
                         )
                       ],
                     );
@@ -451,8 +418,7 @@ class _FormSectionState extends State<FormSection> {
   }
 
   Future<void> inserciondedatos() async {
-    final products =
-        await controllerproduct.getproductbynombre(nombreproduct.text);
+    final products = await controllerproduct.getproductbyid(idproducto.text);
     var id = utf8.encode(
         "${titulo.text}/${section.text}/${controlleradmin.pageview.value}");
     var idl = sha256.convert(id);
@@ -463,14 +429,7 @@ class _FormSectionState extends State<FormSection> {
       subtitulo: subtitulo.text,
       contenido: contenido.text,
       reves: reves.text,
-      nombreProducto: nombreproduct.text,
-      categoria:
-          nombreproduct.text.isEmpty ? categoria.text : products.categoria,
-      subcategoria: nombreproduct.text.isEmpty
-          ? subcategoria.text
-          : products.subcategoria,
-      beneficios: beneficios.text,
-      caracteristicas: caracteristicas.text,
+      producto: products,
       ancho: ancho.text,
       alto: alto.text,
       useScroll: usescroll.text,
@@ -485,11 +444,7 @@ class _FormSectionState extends State<FormSection> {
         subtitulo.text = '';
         contenido.text = '';
         reves.text = '';
-        nombreproduct.text = '';
-        categoria.text = '';
-        subcategoria.text = '';
-        beneficios.text = '';
-        caracteristicas.text = '';
+        idproducto.text = '';
         ancho.text = '';
         alto.text = '';
         usescroll.text = '';
@@ -502,8 +457,7 @@ class _FormSectionState extends State<FormSection> {
   }
 
   Future<void> actualizardatos() async {
-    final products =
-        await controllerproduct.getproductbynombre(nombreproduct.text);
+    final products = await controllerproduct.getproductbyid(idproducto.text);
     final Section sections = Section(
       id: widget.id,
       section: controlleradmin.sectionmodeide.value,
@@ -511,14 +465,7 @@ class _FormSectionState extends State<FormSection> {
       subtitulo: subtitulo.text,
       contenido: contenido.text,
       reves: reves.text,
-      nombreProducto: nombreproduct.text,
-      categoria:
-          nombreproduct.text.isEmpty ? categoria.text : products.categoria,
-      subcategoria: nombreproduct.text.isEmpty
-          ? subcategoria.text
-          : products.subcategoria,
-      beneficios: beneficios.text,
-      caracteristicas: caracteristicas.text,
+      producto: products,
       ancho: ancho.text,
       alto: alto.text,
       useScroll: usescroll.text,
@@ -532,11 +479,7 @@ class _FormSectionState extends State<FormSection> {
         subtitulo.text = '';
         contenido.text = '';
         reves.text = '';
-        nombreproduct.text = '';
-        categoria.text = '';
-        subcategoria.text = '';
-        beneficios.text = '';
-        caracteristicas.text = '';
+        idproducto.text = '';
         ancho.text = '';
         alto.text = '';
         usescroll.text = '';

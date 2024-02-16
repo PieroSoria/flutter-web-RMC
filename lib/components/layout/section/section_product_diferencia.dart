@@ -8,16 +8,16 @@ import '../../widget/card_productmuestra.dart';
 class SectionDirefencia extends StatefulWidget {
   final String titulo;
   final String contenido;
-
-  final String nombreproduct;
-
+  final Products product;
   final Color background;
+  final VoidCallback funcion;
   const SectionDirefencia(
       {super.key,
       required this.titulo,
       required this.contenido,
-      required this.nombreproduct,
-      required this.background});
+      required this.product,
+      required this.background,
+      required this.funcion});
 
   @override
   State<SectionDirefencia> createState() => _SectionDirefenciaState();
@@ -25,17 +25,10 @@ class SectionDirefencia extends StatefulWidget {
 
 class _SectionDirefenciaState extends State<SectionDirefencia> {
   final controllerproduct = Get.put(ControllerProducts());
-  Products? products;
 
   @override
   void initState() {
     super.initState();
-    inicializar();
-  }
-
-  Future<void> inicializar() async {
-    products =
-        await controllerproduct.getproductbynombre(widget.nombreproduct);
   }
 
   @override
@@ -145,11 +138,11 @@ class _SectionDirefenciaState extends State<SectionDirefencia> {
                     width: 300,
                     height: 350,
                     child: CardProductMuestra(
-                      urlimagen: products!.urlimagen,
-                      nombreproduct: widget.nombreproduct,
+                      urlimagen: widget.product.urlimagen,
+                      nombreproduct: widget.product.nombre,
                       namebutton: "Leer mas",
-                      funcion: () {},
-                      categoria: products!.categoria,
+                      funcion: widget.funcion,
+                      categoria: widget.product.categoria,
                     ),
                   ),
                 )

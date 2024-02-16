@@ -126,7 +126,7 @@ class _VistadelosSectionState extends State<VistadelosSection> {
                             width: 100,
                             child: Text(
                               controlleradmin
-                                  .sectionactual[index].nombreProducto,
+                                  .sectionactual[index].producto!.nombre,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontFamily: "CenturyGothic",

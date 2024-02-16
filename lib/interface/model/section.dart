@@ -1,36 +1,30 @@
+import 'package:rmc_bussiness/interface/model/products.dart';
+
 class Section {
-  String id;
-  String section;
-  String titulo;
-  String subtitulo;
-  String contenido;
-  String reves;
-  String nombreProducto;
-  String categoria;
-  String subcategoria;
-  String beneficios;
-  String caracteristicas;
-  String ancho;
-  String alto;
-  String useScroll;
-  String page;
+  dynamic id;
+  dynamic section;
+  dynamic titulo;
+  dynamic subtitulo;
+  dynamic contenido;
+  dynamic reves;
+  Products? producto;
+  dynamic ancho;
+  dynamic alto;
+  dynamic useScroll;
+  dynamic page;
 
   Section(
-      {required this.id,
-      required this.section,
-      required this.titulo,
-      required this.subtitulo,
-      required this.contenido,
-      required this.reves,
-      required this.nombreProducto,
-      required this.categoria,
-      required this.subcategoria,
-      required this.beneficios,
-      required this.caracteristicas,
-      required this.ancho,
-      required this.alto,
-      required this.useScroll,
-      required this.page});
+      {this.id,
+      this.section,
+      this.titulo,
+      this.subtitulo,
+      this.contenido,
+      this.reves,
+      this.producto,
+      this.ancho,
+      this.alto,
+      this.useScroll,
+      this.page});
 
   factory Section.fromJson(Map<String, dynamic> json) {
     return Section(
@@ -40,11 +34,9 @@ class Section {
         subtitulo: json['subtitulo'] ?? '',
         contenido: json['contenido'] ?? '',
         reves: json['reves'] ?? '',
-        nombreProducto: json['nombreproducto'] ?? '',
-        categoria: json['categoria'] ?? '',
-        subcategoria: json['subcategoria'] ?? '',
-        beneficios: json['beneficios'] ?? '',
-        caracteristicas: json['caracteristicas'] ?? '',
+        producto: json['producto'] != null
+            ? Products.fromJson(json['product'])
+            : null,
         ancho: json['ancho'] ?? '',
         alto: json['alto'] ?? '',
         useScroll: json['usescroll'] ?? '',
@@ -59,11 +51,7 @@ class Section {
       'subtitulo': subtitulo,
       'contenido': contenido,
       'reves': reves,
-      'nombreproducto': nombreProducto,
-      'categoria': categoria,
-      'subcategoria': subcategoria,
-      'beneficios': beneficios,
-      'caracteristicas': caracteristicas,
+      'producto': producto,
       'ancho': ancho,
       'alto': alto,
       'usescroll': useScroll,

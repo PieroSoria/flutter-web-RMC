@@ -25,7 +25,8 @@ class GetDataProduct {
               description: productData['description'],
               categoria: productData['categoria'],
               subcategoria: productData['subcategoria'],
-              precio: productData['precio'],
+              preciopublico: productData['preciopublico'],
+              precioreseller: productData['precioreseller'],
               puntaje: productData['puntaje'],
               vendidos: productData['vendidos'],
               urlimagen: productData['urlimagen'],
@@ -49,7 +50,7 @@ class GetDataProduct {
     }
   }
 
-  Future<Products> getProductBynombre(String nombreproduct) async {
+  Future<Products> getProductByid(String nombreproduct) async {
     var client = http.Client();
     try {
       var response = await client.get(
@@ -68,7 +69,8 @@ class GetDataProduct {
             description: decodedResponse['description'],
             categoria: decodedResponse['categoria'],
             subcategoria: decodedResponse['subcategoria'],
-            precio: decodedResponse['precio'],
+            preciopublico: decodedResponse['preciopublico'],
+            precioreseller: decodedResponse['precioreseller'],
             puntaje: decodedResponse['puntaje'],
             vendidos: decodedResponse['vendidos'],
             urlimagen: decodedResponse['urlimagen'],
@@ -82,7 +84,8 @@ class GetDataProduct {
             description: 'description',
             categoria: 'categoria',
             subcategoria: 'subcategoria',
-            precio: 'precio',
+            preciopublico: 'preciopublico',
+            precioreseller: 'precioreseller',
             puntaje: 'puntaje',
             vendidos: 'vendidos',
             urlimagen: 'urlimagen',
@@ -97,7 +100,8 @@ class GetDataProduct {
           description: 'description',
           categoria: 'categoria',
           subcategoria: 'subcategoria',
-          precio: 'precio',
+          preciopublico: 'preciopublico',
+          precioreseller: 'precioreseller',
           puntaje: 'puntaje',
           vendidos: 'vendidos',
           urlimagen: 'urlimagen',
@@ -112,7 +116,8 @@ class GetDataProduct {
         description: 'description',
         categoria: 'categoria',
         subcategoria: 'subcategoria',
-        precio: 'precio',
+        preciopublico: 'preciopublico',
+        precioreseller: 'precioreseller',
         puntaje: 'puntaje',
         vendidos: 'vendidos',
         urlimagen: 'urlimagen',

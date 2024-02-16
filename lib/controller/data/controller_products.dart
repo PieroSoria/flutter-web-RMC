@@ -24,7 +24,8 @@ class ControllerProducts extends GetxController {
       data.description,
       data.categoria,
       data.subcategoria,
-      data.precio,
+      data.preciopublico,
+      data.precioreseller,
       data.puntaje,
       data.vendidos,
       data.urlimagen
@@ -48,10 +49,11 @@ class ControllerProducts extends GetxController {
           description: productData[3],
           categoria: productData[4],
           subcategoria: productData[5],
-          precio: productData[6],
-          puntaje: productData[7],
-          vendidos: productData[8],
-          urlimagen: productData[9],
+          preciopublico: productData[6],
+          precioreseller: productData[7],
+          puntaje: productData[8],
+          vendidos: productData[9],
+          urlimagen: productData[10],
         );
 
         productoseleccionado.value = product;
@@ -104,8 +106,8 @@ class ControllerProducts extends GetxController {
     }
   }
 
-  Future<Products> getproductbynombre(String nombre) async {
-    final data = await conexiondatabase.getProductBynombre(nombre);
+  Future<Products> getproductbyid(String idproduct) async {
+    final data = await conexiondatabase.getProductByid(idproduct);
     return data;
   }
 

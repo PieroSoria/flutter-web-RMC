@@ -1,26 +1,28 @@
 class Products {
-  String id;
-  String nombre;
-  String comentario;
-  String description;
-  String categoria;
-  String subcategoria;
-  String precio;
-  String puntaje;
-  String vendidos;
-  String urlimagen;
+  dynamic id;
+  dynamic nombre;
+  dynamic comentario;
+  dynamic description;
+  dynamic categoria;
+  dynamic subcategoria;
+  dynamic preciopublico;
+  dynamic precioreseller;
+  dynamic puntaje;
+  dynamic vendidos;
+  dynamic urlimagen;
 
   Products(
-      {required this.id,
-      required this.nombre,
-      required this.comentario,
-      required this.description,
-      required this.categoria,
-      required this.subcategoria,
-      required this.precio,
-      required this.puntaje,
-      required this.vendidos,
-      required this.urlimagen});
+      {this.id,
+      this.nombre,
+      this.comentario,
+      this.description,
+      this.categoria,
+      this.subcategoria,
+      this.preciopublico,
+      this.precioreseller,
+      this.puntaje,
+      this.vendidos,
+      this.urlimagen});
 
   Map<String, dynamic> toJson() {
     return {
@@ -30,7 +32,7 @@ class Products {
       'description': description,
       'categoria': categoria,
       'subcategoria': subcategoria,
-      'precio': precio,
+      'preciopublico': preciopublico,
       'puntaje': puntaje,
       'vendidos': vendidos,
       'urlimagen': urlimagen,
@@ -45,7 +47,8 @@ class Products {
       description: json['description'] ?? '',
       categoria: json['categoria'] ?? '',
       subcategoria: json['subcategoria'] ?? '',
-      precio: json['precio'] ?? '',
+      preciopublico: json['preciopublico'] ?? '',
+      precioreseller: json['precioreseller'] ?? '',
       puntaje: json['puntaje'] ?? '',
       vendidos: json['vendidos'] ?? '',
       urlimagen: json['urlimagen'] ?? '',

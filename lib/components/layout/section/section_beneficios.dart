@@ -10,7 +10,7 @@ class SectionBeneficios extends StatefulWidget {
   final List<String> datos;
   final bool reves;
   final Color background;
-  final String nombreproduct;
+  final Products products;
   final VoidCallback funcion;
   const SectionBeneficios(
       {super.key,
@@ -18,8 +18,7 @@ class SectionBeneficios extends StatefulWidget {
       required this.datos,
       required this.reves,
       required this.background,
-      required this.nombreproduct,
-      required this.funcion});
+      required this.funcion, required this.products});
 
   @override
   State<SectionBeneficios> createState() => _SectionBeneficiosState();
@@ -27,17 +26,15 @@ class SectionBeneficios extends StatefulWidget {
 
 class _SectionBeneficiosState extends State<SectionBeneficios> {
   final controllerproduct = Get.put(ControllerProducts());
-  Products? products;
+
 
   @override
   void initState() {
     super.initState();
-    inicializar();
+    
   }
 
-  Future<void> inicializar() async {
-    products = await controllerproduct.getproductbynombre(widget.nombreproduct);
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +72,11 @@ class _SectionBeneficiosState extends State<SectionBeneficios> {
                           width: 300,
                           height: 350,
                           child: CardProductMuestra(
-                            urlimagen: products!.urlimagen,
-                            nombreproduct: widget.nombreproduct,
+                            urlimagen: widget.products.urlimagen,
+                            nombreproduct: widget.products.nombre,
                             namebutton: 'Leer mas',
                             funcion: widget.funcion,
-                            categoria: products!.categoria,
+                            categoria: widget.products.categoria,
                           ),
                         ),
                       )
@@ -139,11 +136,11 @@ class _SectionBeneficiosState extends State<SectionBeneficios> {
                           width: 300,
                           height: 350,
                           child: CardProductMuestra(
-                            urlimagen: products!.urlimagen,
-                            nombreproduct: widget.nombreproduct,
+                            urlimagen: widget.products.urlimagen,
+                            nombreproduct: widget.products.nombre,
                             namebutton: 'leer mas',
                             funcion: widget.funcion,
-                            categoria: products!.categoria,
+                            categoria: widget.products.categoria,
                           ),
                         ),
                       ),

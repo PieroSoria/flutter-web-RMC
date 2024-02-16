@@ -10,7 +10,7 @@ class GetSectionApi {
   Future<List<Section>> getsectionbd(String pageview) async {
     final client = http.Client();
     try {
-      var url = Uri.https(
+      var url = Uri.http(
         HostingRMC.hostingprueba,
         URLSDirection.urlpruebasection,
         {'pageview': pageview},

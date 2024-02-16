@@ -11,7 +11,7 @@ class GetDataProduct {
     var client = http.Client();
     try {
       var response = await client.get(
-        Uri.https(HostingRMC.hostingprueba, URLSDirection.urlprueba),
+        Uri.http(HostingRMC.hostingprueba, URLSDirection.urlprueba),
       );
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
@@ -42,7 +42,7 @@ class GetDataProduct {
         return [];
       }
     } catch (e) {
-      debugPrint("Error durante la solicitud: $e");
+      debugPrint("Error durante la solicitud getproduct: $e");
       return [];
     } finally {
       client.close();
@@ -53,7 +53,7 @@ class GetDataProduct {
     var client = http.Client();
     try {
       var response = await client.get(
-        Uri.https(HostingRMC.hostingprueba, URLSDirection.urlprueba,
+        Uri.http(HostingRMC.hostingprueba, URLSDirection.urlprueba,
             {'nombre': nombreproduct}),
       );
 

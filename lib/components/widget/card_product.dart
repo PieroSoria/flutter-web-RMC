@@ -21,7 +21,14 @@ class _CardProductState extends State<CardProduct> {
   final controllerproducs = Get.put(ControllerProducts());
   @override
   void initState() {
+    controllerproducs.onInit();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controllerproducs.onClose();
+    super.dispose();
   }
 
   @override

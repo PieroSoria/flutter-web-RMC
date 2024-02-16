@@ -37,7 +37,7 @@ class _FoorterPageState extends State<FoorterPage> {
                   ),
                   const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
                   const Text(
-                    "POST IMPORT",
+                    "RMC SOLUTIONS & BUSSINES",
                     style: TextStyle(
                       fontFamily: "CenturyGothic",
                       fontSize: 25,
@@ -47,7 +47,7 @@ class _FoorterPageState extends State<FoorterPage> {
                   const SizedBox(
                     width: 240,
                     child: Text(
-                      "Copyright © 2023 PosImport.Todos los derechos reservados",
+                      "Copyright © 2023 RMC Solutions & Business.Todos los derechos reservados",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 18,
@@ -69,7 +69,7 @@ class _FoorterPageState extends State<FoorterPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            "POST IMPORT",
+                            "RMC Solutions & Business",
                             style: TextStyle(
                               fontFamily: "CenturyGothic",
                               fontSize: 25,
@@ -125,9 +125,9 @@ class _FoorterPageState extends State<FoorterPage> {
                       ),
                     ),
                     const SizedBox(
-                      height: 220,
+                      height: 290,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             "Contactos",
@@ -176,7 +176,7 @@ class _FoorterPageState extends State<FoorterPage> {
                                     ),
                                   ),
                                   Text(
-                                    "1202389402",
+                                    "+51 981 229 283",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontSize: 18,
@@ -201,7 +201,7 @@ class _FoorterPageState extends State<FoorterPage> {
                                     ),
                                   ),
                                   Text(
-                                    "1202389402@nfdisanfi",
+                                    "COMERCIAL@RMC.PE",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontSize: 18,

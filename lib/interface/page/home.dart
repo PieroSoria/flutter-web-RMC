@@ -253,62 +253,6 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: Container(
-              width: double.infinity,
-              height: 300,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              child: const Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Text(
-                      "Nuestras marcas",
-                      style: TextStyle(
-                        fontFamily: "CenturyGothic",
-                        fontSize: 40,
-                        color: Color.fromARGB(255, 127, 127, 127),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    child: Text(
-                      "POS IMPORT S.A.C. representante exclusivo de la marca POS-D",
-                      style: TextStyle(
-                        fontFamily: "CenturyGothic",
-                        fontSize: 25,
-                        color: Color.fromARGB(255, 127, 127, 127),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ImagenSection(
-                        imagenurl: "assets/image/empresaicon.png",
-                        width: 300,
-                        height: 80,
-                      ),
-                      ImagenSection(
-                        imagenurl: "assets/image/empresaicon.png",
-                        width: 300,
-                        height: 80,
-                      ),
-                      ImagenSection(
-                        imagenurl: "assets/image/empresaicon.png",
-                        width: 300,
-                        height: 80,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
           const FoorterPage()
         ],
       ),

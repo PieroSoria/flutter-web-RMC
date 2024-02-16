@@ -6,9 +6,7 @@ import 'package:rmc_bussiness/connection/function/consultform.dart';
 import 'circuletab.dart';
 
 class FormContacto extends StatefulWidget {
-  const FormContacto({
-    super.key,
-  });
+  const FormContacto({super.key});
 
   @override
   State<FormContacto> createState() => _FormContactoState();
@@ -34,6 +32,20 @@ class _FormContactoState extends State<FormContacto> {
     "Solicitar Demostracion",
     "Convertirme en Distribuidor"
   ];
+
+  @override
+  void dispose() {
+    nombre.dispose();
+    apellido.dispose();
+    email.dispose();
+    telefono.dispose();
+    empresa.dispose();
+    webempresa.dispose();
+    consulta.dispose();
+    mensaje.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

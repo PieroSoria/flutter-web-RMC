@@ -25,8 +25,16 @@ class _TipeSectionState extends State<TipeSection> {
 
   @override
   void initState() {
-    
+    controllerproduct.onClose();
+    controllerwidget.onInit();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controllerproduct.onClose();
+    controllerwidget.onClose();
+    super.dispose();
   }
 
   @override
@@ -37,7 +45,6 @@ class _TipeSectionState extends State<TipeSection> {
       child: Obx(() {
         final sections = controllerwidget.futuresection;
         if (sections[widget.index].section == "Container") {
-          
           return SectionContainer(
             titulo: sections[widget.index].titulo,
             contenido: sections[widget.index].contenido,

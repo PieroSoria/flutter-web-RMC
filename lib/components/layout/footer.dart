@@ -58,7 +58,7 @@ class _FoorterPageState extends State<FoorterPage> {
                 ],
               ),
               SizedBox(
-                width: 600,
+                width: 900,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -138,7 +138,7 @@ class _FoorterPageState extends State<FoorterPage> {
                             ),
                           ),
                           SizedBox(
-                            width: 140,
+                            width: 250,
                             child: InkWell(
                               child: Column(
                                 children: [
@@ -163,7 +163,7 @@ class _FoorterPageState extends State<FoorterPage> {
                             ),
                           ),
                           SizedBox(
-                            width: 140,
+                            width: 250,
                             child: InkWell(
                               child: Column(
                                 children: [
@@ -188,7 +188,7 @@ class _FoorterPageState extends State<FoorterPage> {
                             ),
                           ),
                           SizedBox(
-                            width: 140,
+                            width: 250,
                             child: InkWell(
                               child: Column(
                                 children: [

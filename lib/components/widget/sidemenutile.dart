@@ -38,7 +38,6 @@ class _SideMenuTileState extends State<SideMenuTile> {
                 width: 180,
                 child: ButtonHover(
                   funcion: () {
-                    controllerwidget.futuresection.clear();
                     switch (widget.titulo) {
                       case "Soluciones":
                         controllerwidget.indexwidget(1);
@@ -73,7 +72,6 @@ class _SideMenuTileState extends State<SideMenuTile> {
                       child: Center(
                         child: ButtonHover(
                           funcion: () {
-                            controllerwidget.futuresection.clear();
                             String value = item;
                             switch (value) {
                               case "Retail":

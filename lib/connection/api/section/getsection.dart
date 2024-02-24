@@ -22,6 +22,7 @@ class GetSectionApi {
         List<dynamic> jsonResponse = json.decode(response.body);
         final sections =
             jsonResponse.map((data) => Section.fromJson(data)).toList();
+
         return sections;
       } else {
         debugPrint(
@@ -29,21 +30,21 @@ class GetSectionApi {
         return [];
       }
     } catch (e) {
-      debugPrint("Error del servidor : $e");
+      debugPrint("Error del servidor getsection : $e");
       return [];
     } finally {
       client.close();
     }
   }
 
-  Future<bool> createSectiondb(Section section) async {
+  Future<bool> createSectiondb(Map<String, dynamic> section) async {
     final client = http.Client();
     try {
       var url =
-          Uri.https(HostingRMC.hostingprueba, URLSDirection.urlpruebasection);
-      final jsondecodemap = section.toJson();
-      final jsonda = json.encode(jsondecodemap);
-      debugPrint(jsondecodemap.toString());
+          Uri.http(HostingRMC.hostingprueba, URLSDirection.urlpruebasection);
+
+      final jsonda = json.encode(section);
+      debugPrint(jsonda.toString());
       var response = await client.post(
         url,
         body: jsonda,
@@ -98,9 +99,8 @@ class GetSectionApi {
     try {
       var url =
           Uri.https(HostingRMC.hostingprueba, URLSDirection.urlpruebasection2);
-      final jsondecodemap = section.toJson();
-      final jsonda = json.encode(jsondecodemap);
-      var response = await client.put(url, body: jsonda);
+      final jsonda = json.encode(section);
+      var response = await client.post(url, body: jsonda);
       if (response.statusCode == 200) {
         var parsedSections = json.decode(response.body);
         debugPrint("Mensaje del servidor: $parsedSections");

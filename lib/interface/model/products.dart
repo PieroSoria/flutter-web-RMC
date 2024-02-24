@@ -10,6 +10,7 @@ class Products {
   dynamic puntaje;
   dynamic vendidos;
   dynamic urlimagen;
+  dynamic urlpdf;
 
   Products(
       {this.id,
@@ -22,7 +23,8 @@ class Products {
       this.precioreseller,
       this.puntaje,
       this.vendidos,
-      this.urlimagen});
+      this.urlimagen,
+      this.urlpdf});
 
   Map<String, dynamic> toJson() {
     return {
@@ -36,22 +38,24 @@ class Products {
       'puntaje': puntaje,
       'vendidos': vendidos,
       'urlimagen': urlimagen,
+      'urlpdf': urlpdf,
     };
   }
 
   factory Products.fromJson(Map<String, dynamic> json) {
     return Products(
-      id: json['id'] ?? '',
-      nombre: json['nombre'] ?? '',
-      comentario: json['comentario'] ?? '',
-      description: json['description'] ?? '',
-      categoria: json['categoria'] ?? '',
-      subcategoria: json['subcategoria'] ?? '',
-      preciopublico: json['preciopublico'] ?? '',
-      precioreseller: json['precioreseller'] ?? '',
-      puntaje: json['puntaje'] ?? '',
-      vendidos: json['vendidos'] ?? '',
-      urlimagen: json['urlimagen'] ?? '',
+      id: json['id'],
+      nombre: json['nombre'],
+      comentario: json['comentario'],
+      description: json['description'],
+      categoria: json['categoria'],
+      subcategoria: json['subcategoria'],
+      preciopublico: json['preciopublico'],
+      precioreseller: json['precioreseller'],
+      puntaje: json['puntaje'],
+      vendidos: json['vendidos'],
+      urlimagen: json['urlimagen'],
+      urlpdf: json['urlpdf'],
     );
   }
 }

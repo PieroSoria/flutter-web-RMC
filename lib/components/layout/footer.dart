@@ -143,7 +143,7 @@ class _FoorterPageState extends State<FoorterPage> {
                               child: Column(
                                 children: [
                                   Text(
-                                    "Telefono",
+                                    "Ubicacion",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontSize: 18,
@@ -151,7 +151,7 @@ class _FoorterPageState extends State<FoorterPage> {
                                     ),
                                   ),
                                   Text(
-                                    "1202389402",
+                                    "AV. CHIMU 283, VILLA MARIA DEL TRIUNFO, LIMA",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontSize: 18,

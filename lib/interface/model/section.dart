@@ -28,34 +28,18 @@ class Section {
 
   factory Section.fromJson(Map<String, dynamic> json) {
     return Section(
-        id: json['id'] ?? '',
-        section: json['section'] ?? '',
+        id: json['id'],
+        section: json['section'],
         titulo: json['titulo'] ?? '',
-        subtitulo: json['subtitulo'] ?? '',
-        contenido: json['contenido'] ?? '',
+        subtitulo: json['subtitulo'],
+        contenido: json['contenido'],
         reves: json['reves'] ?? '',
         producto: json['producto'] != null
-            ? Products.fromJson(json['product'])
+            ? Products.fromJson(json['producto'])
             : null,
-        ancho: json['ancho'] ?? '',
-        alto: json['alto'] ?? '',
-        useScroll: json['usescroll'] ?? '',
-        page: json['pageview'] ?? '');
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'section': section,
-      'titulo': titulo,
-      'subtitulo': subtitulo,
-      'contenido': contenido,
-      'reves': reves,
-      'producto': producto,
-      'ancho': ancho,
-      'alto': alto,
-      'usescroll': useScroll,
-      'pageview': page
-    };
+        ancho: json['ancho'],
+        alto: json['alto'],
+        useScroll: json['usescroll'],
+        page: json['pageview']);
   }
 }

@@ -2,12 +2,15 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'package:rmc_bussiness/interface/model/products.dart';
+import 'package:rmc_bussiness/settings/function/api/cambiosalosproductos.dart';
 
 import '../../../connection/api/section/getsection.dart';
 import '../../../interface/model/section.dart';
 
 class SettingsAdmin extends GetxController {
   final getsection = GetSectionApi();
+  final getproductos = ApiProductoAdmin();
   RxBool ini = false.obs;
   RxString sectionmodeide = ''.obs;
   RxString pageview = 'Soluciones'.obs;
@@ -47,9 +50,7 @@ class SettingsAdmin extends GetxController {
     sectionactual.clear();
     final data = await getsection.getsectionbd(pageview);
     if (data.isNotEmpty) {
-      sectionactual.assignAll(
-        data.map((e) => Section.fromJson(e.toJson())).toList(),
-      );
+      sectionactual.assignAll(data);
     } else {
       debugPrint("Los datos son nulos");
     }
@@ -74,6 +75,29 @@ class SettingsAdmin extends GetxController {
         sectionactual[index] = section;
         sectionactual.refresh();
       }
+    }
+  }
+
+  Future<List<Products>> getdataproducts() async {
+    final data = await getproductos.mostrarlosproductos();
+    return data;
+  }
+
+  Future<void> deleteproductbyid(String id) async {
+    final resul = await getproductos.eliminarproductoporid(id);
+    if (resul) {
+      Get.snackbar("Exito", "Se elimino el producto");
+    } else {
+      Get.snackbar("Opps!", "Error de la peticion");
+    }
+  }
+
+  Future<void> agregarnuevoproducto(Map<String,dynamic> products) async {
+    final result = await getproductos.agregarnuevoproducto(products);
+    if (result) {
+      Get.snackbar("Exito", "Se guardo el producto");
+    } else {
+      Get.snackbar("Opps!", "Error de la peticion");
     }
   }
 }

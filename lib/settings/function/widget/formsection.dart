@@ -122,12 +122,6 @@ class _FormSectionState extends State<FormSection> {
                           height: 50,
                           titulo: 'Subtitulo del section',
                         ),
-                        // InputFormCustom(
-                        //   controllerform: contenido,
-                        //   width: 400,
-                        //   height: 50,
-                        //   titulo: 'Contenido del Section',
-                        // ),
                         const Text(
                           "Contenido del Section",
                           textAlign: TextAlign.center,
@@ -201,6 +195,12 @@ class _FormSectionState extends State<FormSection> {
                           },
                         ),
                         InputFormCustom(
+                          controllerform: idproducto,
+                          width: 400,
+                          height: 50,
+                          titulo: 'id de producto',
+                        ),
+                        InputFormCustom(
                           controllerform: ancho,
                           width: 400,
                           height: 50,
@@ -234,12 +234,6 @@ class _FormSectionState extends State<FormSection> {
                           height: 50,
                           titulo: 'titulo del Section',
                         ),
-                        // InputFormCustom(
-                        //   controllerform: contenido,
-                        //   width: 400,
-                        //   height: 100,
-                        //   titulo: 'Contenido del Section',
-                        // ),
                         const Text(
                           "Contenido del Section",
                           textAlign: TextAlign.center,
@@ -259,6 +253,12 @@ class _FormSectionState extends State<FormSection> {
                               borderRadius: BorderRadius.circular(10),
                             )),
                           ),
+                        ),
+                        InputFormCustom(
+                          controllerform: idproducto,
+                          width: 400,
+                          height: 50,
+                          titulo: 'id de producto',
                         ),
                       ],
                     );
@@ -271,12 +271,6 @@ class _FormSectionState extends State<FormSection> {
                           height: 50,
                           titulo: 'titulo del Section',
                         ),
-                        // InputFormCustom(
-                        //   controllerform: contenido,
-                        //   width: 400,
-                        //   height: 50,
-                        //   titulo: 'Contenido del Section',
-                        // ),
                         const Text(
                           "Contenido del Section",
                           textAlign: TextAlign.center,
@@ -296,6 +290,12 @@ class _FormSectionState extends State<FormSection> {
                               borderRadius: BorderRadius.circular(10),
                             )),
                           ),
+                        ),
+                        InputFormCustom(
+                          controllerform: idproducto,
+                          width: 400,
+                          height: 50,
+                          titulo: 'id de producto',
                         ),
                         InputFormCustom(
                           controllerform: reves,
@@ -314,12 +314,6 @@ class _FormSectionState extends State<FormSection> {
                           height: 50,
                           titulo: 'titulo del Section',
                         ),
-                        // InputFormCustom(
-                        //   controllerform: contenido,
-                        //   width: 400,
-                        //   height: 50,
-                        //   titulo: 'Contenido del Section',
-                        // ),
                         const Text(
                           "Contenido del Section",
                           textAlign: TextAlign.center,
@@ -340,6 +334,12 @@ class _FormSectionState extends State<FormSection> {
                             )),
                           ),
                         ),
+                        InputFormCustom(
+                          controllerform: idproducto,
+                          width: 400,
+                          height: 50,
+                          titulo: 'id de producto',
+                        ),
                       ],
                     );
                   case "Caracteristicas":
@@ -351,12 +351,6 @@ class _FormSectionState extends State<FormSection> {
                           height: 50,
                           titulo: 'titulo del Section',
                         ),
-                        // InputFormCustom(
-                        //   controllerform: contenido,
-                        //   width: 400,
-                        //   height: 50,
-                        //   titulo: 'Contenido del Section',
-                        // ),
                         const Text(
                           "Contenido del Section",
                           textAlign: TextAlign.center,
@@ -422,19 +416,19 @@ class _FormSectionState extends State<FormSection> {
     var id = utf8.encode(
         "${titulo.text}/${section.text}/${controlleradmin.pageview.value}");
     var idl = sha256.convert(id);
-    final Section sections = Section(
-      id: idl.toString(),
-      section: controlleradmin.sectionmodeide.value,
-      titulo: titulo.text,
-      subtitulo: subtitulo.text,
-      contenido: contenido.text,
-      reves: reves.text,
-      producto: products,
-      ancho: ancho.text,
-      alto: alto.text,
-      useScroll: usescroll.text,
-      page: controlleradmin.pageview.value,
-    );
+    Map<String, dynamic> sections = {
+      'id': idl.toString(),
+      'section': controlleradmin.sectionmodeide.value,
+      'titulo': titulo.text,
+      'subtitulo': subtitulo.text,
+      'contenido': contenido.text,
+      'reves': reves.text,
+      'producto': products.id.toString() != 'id' ? products.id.toString() : "",
+      'ancho': ancho.text,
+      'alto': alto.text,
+      'usescroll': usescroll.text,
+      'pageview': controlleradmin.pageview.value,
+    };
 
     bool result = await getsection.createSectiondb(sections);
     if (result) {

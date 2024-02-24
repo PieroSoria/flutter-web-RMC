@@ -15,9 +15,18 @@ import 'routes.dart';
 //     };
 
 List<GetPage<dynamic>>? get approutes => [
-      GetPage(name: Routes.index, page: () => const Index()),
-      GetPage(name: Routes.admin, page: () => const AdminScreen()),
-      GetPage(name: Routes.admindesktop, page: () => const AdminDesktop()),
+      GetPage(
+        name: Routes.index,
+        page: () => const Index(),
+      ),
+      GetPage(
+        name: Routes.admin,
+        page: () => const AdminScreen(),
+      ),
+      GetPage(
+        name: Routes.admindesktop,
+        page: () => const AdminDesktop(),
+      ),
       GetPage(
         name: Routes.product,
         page: () => const CardProduct(),
@@ -28,5 +37,8 @@ List<GetPage<dynamic>>? get approutes => [
         page: () => const ActualizarSection(),
         arguments: 0,
       ),
-      GetPage(name: Routes.modeproductos, page: () => const ProductosScreen())
+      GetPage(
+        name: Routes.modeproductos,
+        page: () => const ProductosScreen(),
+      )
     ];

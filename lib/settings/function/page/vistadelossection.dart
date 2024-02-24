@@ -47,12 +47,14 @@ class _VistadelosSectionState extends State<VistadelosSection> {
         ),
         title: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
-          child: Text(
-            "DATOS DE LA PAGINA ${controlleradmin.pageview.value}",
-            style: const TextStyle(
-              fontFamily: "CenturyGothic",
-              fontSize: 30,
-              color: Color.fromARGB(255, 0, 112, 192),
+          child: Obx(
+            () => Text(
+              "DATOS DE LA PAGINA ${controlleradmin.pageview.value}",
+              style: const TextStyle(
+                fontFamily: "CenturyGothic",
+                fontSize: 30,
+                color: Color.fromARGB(255, 0, 112, 192),
+              ),
             ),
           ),
         ),
@@ -87,7 +89,7 @@ class _VistadelosSectionState extends State<VistadelosSection> {
                       margin: const EdgeInsets.symmetric(vertical: 20),
                       height: 80,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
+                        color: const Color.fromARGB(255, 0, 127, 192),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Row(
@@ -99,7 +101,8 @@ class _VistadelosSectionState extends State<VistadelosSection> {
                               SizedBox(
                                 width: 200,
                                 child: Text(
-                                  controlleradmin.sectionactual[index].id,
+                                  controlleradmin.sectionactual[index].id
+                                      .toString(),
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     fontFamily: "CenturyGothic",
@@ -111,7 +114,8 @@ class _VistadelosSectionState extends State<VistadelosSection> {
                               SizedBox(
                                 width: 200,
                                 child: Text(
-                                  controlleradmin.sectionactual[index].section,
+                                  controlleradmin.sectionactual[index].section
+                                      .toString(),
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     fontFamily: "CenturyGothic",
@@ -125,8 +129,11 @@ class _VistadelosSectionState extends State<VistadelosSection> {
                           SizedBox(
                             width: 100,
                             child: Text(
-                              controlleradmin
-                                  .sectionactual[index].producto!.nombre,
+                              controlleradmin.sectionactual[index].producto !=
+                                      null
+                                  ? controlleradmin
+                                      .sectionactual[index].producto!.nombre
+                                  : "No se encontro ningun producto",
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontFamily: "CenturyGothic",

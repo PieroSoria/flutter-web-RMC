@@ -37,6 +37,20 @@ class _TarjectScrollProductsState extends State<TarjectScrollProducts> {
   final HorizontalListViewController _controller =
       HorizontalListViewController();
   final controllerproduct = Get.put(ControllerProducts());
+
+  @override
+  void initState() {
+    controllerproduct.onInit();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    controllerproduct.onClose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(

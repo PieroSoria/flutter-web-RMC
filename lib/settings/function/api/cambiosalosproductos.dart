@@ -10,7 +10,7 @@ class ApiProductoAdmin {
   Future<bool> agregarnuevoproducto(Map<String,dynamic> data) async {
     final client = http.Client();
     try {
-      var url = Uri.http(HostingRMC.hostingprueba, URLSDirection.urlprueba);
+      var url = Uri.https(HostingRMC.hostingprueba, URLSDirection.urlprueba);
       final result = json.encode(data);
       debugPrint(result);
       var response = await client.post(url, body: result);
@@ -32,7 +32,7 @@ class ApiProductoAdmin {
   Future<List<Products>> mostrarlosproductos() async {
     final client = http.Client();
     try {
-      var url = Uri.http(HostingRMC.hostingprueba, URLSDirection.urlprueba);
+      var url = Uri.https(HostingRMC.hostingprueba, URLSDirection.urlprueba);
       var response = await client.get(url);
       if (response.statusCode == 200) {
         debugPrint("Datos capturados: ${response.body}");
@@ -56,7 +56,7 @@ class ApiProductoAdmin {
   Future<void> actualizarproductoporid(Products data) async {
     final client = http.Client();
     try {
-      var url = Uri.http(HostingRMC.hostingprueba, URLSDirection.urlprueba2);
+      var url = Uri.https(HostingRMC.hostingprueba, URLSDirection.urlprueba2);
       final result = json.encode(data);
       var response = await client.post(url, body: result);
       if (response.statusCode == 200) {
@@ -72,7 +72,7 @@ class ApiProductoAdmin {
   Future<bool> eliminarproductoporid(String id) async {
     final client = http.Client();
     try {
-      var url = Uri.http(
+      var url = Uri.https(
           HostingRMC.hostingprueba, URLSDirection.urlprueba2, {'id': id});
 
       var response = await client.get(url);

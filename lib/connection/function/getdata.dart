@@ -11,7 +11,7 @@ class GetDataProduct {
     var client = http.Client();
     try {
       var response = await client.get(
-        Uri.http(HostingRMC.hostingprueba, URLSDirection.urlprueba),
+        Uri.https(HostingRMC.hostingprueba, URLSDirection.urlprueba),
       );
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));

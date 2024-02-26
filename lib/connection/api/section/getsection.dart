@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rmc_bussiness/connection/hosting/hosting_bussiens.dart';
 import 'package:rmc_bussiness/connection/urls/urls_direction.dart';
 import 'package:rmc_bussiness/interface/model/section.dart';
@@ -10,7 +11,7 @@ class GetSectionApi {
   Future<List<Section>> getsectionbd(String pageview) async {
     final client = http.Client();
     try {
-      var url = Uri.http(
+      var url = Uri.https(
         HostingRMC.hostingprueba,
         URLSDirection.urlpruebasection,
         {'pageview': pageview},
@@ -27,10 +28,12 @@ class GetSectionApi {
       } else {
         debugPrint(
             'Error al obtener las secciones. Código de estado: ${response.statusCode}');
+        Get.snackbar("error", "dato capturado: ${response.body}");
         return [];
       }
     } catch (e) {
       debugPrint("Error del servidor getsection : $e");
+      Get.snackbar("error", "dato capturado: $e");
       return [];
     } finally {
       client.close();
@@ -41,7 +44,7 @@ class GetSectionApi {
     final client = http.Client();
     try {
       var url =
-          Uri.http(HostingRMC.hostingprueba, URLSDirection.urlpruebasection);
+          Uri.https(HostingRMC.hostingprueba, URLSDirection.urlpruebasection);
 
       final jsonda = json.encode(section);
       debugPrint(jsonda.toString());

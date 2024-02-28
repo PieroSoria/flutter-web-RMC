@@ -8,13 +8,7 @@ import 'package:rmc_bussiness/settings/function/page/productos/productos.dart';
 import '../../interface/page/index.dart';
 import 'routes.dart';
 
-// Map<String, Widget Function(BuildContext)> get approutess => {
-//       Routes.index: (_) => const Index(),
-//       Routes.admin: (_) => const AdminScreen(),
-//       Routes.admindesktop: (_) => const AdminDesktop(),
-//     };
-
-List<GetPage<dynamic>>? get approutes => [
+List<GetPage<dynamic>> get approutes => [
       GetPage(
         name: Routes.index,
         page: () => const Index(),

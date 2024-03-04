@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:rmc_bussiness/settings/function/controller/admin_controller.dart';
 import 'package:rmc_bussiness/settings/function/page/productos/datoproducts.dart';
@@ -110,6 +109,10 @@ class _AgregarproductosState extends State<Agregarproductos> {
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: ElevatedButton(
                 onPressed: () async {
+                  final String? imageUrl = await controller.getproductos
+                      .subirimagenproducto(
+                          archivo: controller.imagecapturada.value!,
+                          nombreimagen: controller.nombredelaimagen.value);
                   final data = {
                     'nombre': nombre.text,
                     'description': description.text,
@@ -121,9 +124,22 @@ class _AgregarproductosState extends State<Agregarproductos> {
                     'puntaje': puntaje.text,
                     'vendidos': vendidos.text,
                     'urlpdf': urlpdf.text,
-                    'urlimagen': controller.imagenurl.value,
+                    'urlimagen': imageUrl ?? "image/agregeproduct.jpg",
                   };
                   await controller.agregarnuevoproducto(data);
+                  setState(() {
+                    nombre.text = "";
+                    description.text = "";
+                    comentarios.text = "";
+                    categoria.text = "";
+                    subcategoria.text = "";
+                    preciopublico.text = "";
+                    precioreseller.text = "";
+                    puntaje.text = "";
+                    vendidos.text = "";
+                    urlpdf.text = "";
+                    controller.imagecapturada(null);
+                  });
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(

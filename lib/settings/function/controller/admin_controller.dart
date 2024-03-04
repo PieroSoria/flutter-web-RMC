@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -22,7 +21,10 @@ class SettingsAdmin extends GetxController {
   RxList<Section> sectionactual = <Section>[].obs;
   RxInt index = 0.obs;
   Rx<Uint8List?> imagecapturada = Rx<Uint8List?>(null);
-  RxString imagenurl = ''.obs;
+  Rx<Uint8List?> imagecapturada2 = Rx<Uint8List?>(null);
+
+  RxString nombredelaimagen = ''.obs;
+  RxString nombredelaimagen2 = ''.obs;
 
   Future<bool> loginadmin(String user, String password) async {
     var client = http.Client();
@@ -99,6 +101,8 @@ class SettingsAdmin extends GetxController {
   Future<void> agregarnuevoproducto(Map<String, dynamic> products) async {
     final result = await getproductos.agregarnuevoproducto(products);
     if (result) {
+      imagecapturada(null);
+      nombredelaimagen("");
       Get.snackbar("Exito", "Se guardo el producto");
     } else {
       Get.snackbar("Opps!", "Error de la peticion");
@@ -108,6 +112,8 @@ class SettingsAdmin extends GetxController {
   Future<void> actualizarproductoporid(Products data) async {
     final result = await getproductos.actualizarproductoporid(data);
     if (result) {
+      imagecapturada2(null);
+      nombredelaimagen2("");
       Get.snackbar("Exito", "Producto Actualizado correctamente");
     } else {
       Get.snackbar("Opps!", "Hubo un problema");
@@ -123,19 +129,22 @@ class SettingsAdmin extends GetxController {
       debugPrint("data: ${result.name}");
       final archivo = await result.readAsBytes();
       imagecapturada(archivo);
-      try {
-        final String? imageUrl = await getproductos.subirimagenproducto(
-            archivo: archivo, nombreimagen: result.name);
+      nombredelaimagen(result.name);
+    } else {
+      debugPrint('Selección de imagen cancelada.');
+    }
+  }
 
-        if (imageUrl != null) {
-          debugPrint('Imagen cargada con éxito. URL: $imageUrl');
-          imagenurl(imageUrl);
-        } else {
-          debugPrint('Error al cargar la imagen.');
-        }
-      } catch (e) {
-        debugPrint('Error durante la carga de la imagen: $e');
-      }
+  Future<void> capturarimagen2() async {
+    final imagepicker = ImagePicker();
+    final XFile? result =
+        await imagepicker.pickImage(source: ImageSource.gallery);
+
+    if (result != null) {
+      debugPrint("data: ${result.name}");
+      final archivo = await result.readAsBytes();
+      imagecapturada2(archivo);
+      nombredelaimagen2(result.name);
     } else {
       debugPrint('Selección de imagen cancelada.');
     }

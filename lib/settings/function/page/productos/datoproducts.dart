@@ -126,23 +126,38 @@ class _DatoproductosState extends State<Datoproductos> {
                       )
                     ],
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      controller.capturarimagen();
-                    },
-                    child: Obx(
-                      () => Container(
-                        width: 300,
-                        height: 300,
-                        decoration: const BoxDecoration(),
-                        child: imagenurldata != null
-                            ? ImageNetwork(
-                                image: imagenurldata!, height: 300, width: 300)
-                            : Image.asset('image/agregeproduct.jpg',
-                                height: 300, width: 300),
-                      ),
-                    ),
-                  )
+                  imagenurldata != "assets/image/agregeproduct.jpg"
+                      ? ImageNetwork(
+                          image: imagenurldata!,
+                          height: 300,
+                          width: 300,
+                          onTap: () {
+                            controller.capturarimagen2();
+                          },
+                        )
+                      : GestureDetector(
+                          onTap: () {
+                            controller.capturarimagen2();
+                          },
+                          child: Obx(
+                            () => Container(
+                              width: 300,
+                              height: 300,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: controller.imagecapturada2.value !=
+                                          null
+                                      ? MemoryImage(
+                                              controller.imagecapturada2.value!)
+                                          as ImageProvider
+                                      : const AssetImage(
+                                          'image/agregeproduct.jpg'),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                 ],
               ),
             ),
@@ -159,8 +174,14 @@ class _DatoproductosState extends State<Datoproductos> {
                 child: Row(
                   children: [
                     IconButton(
-                      onPressed: () {
-                        controller.actualizarproductoporid(Products(
+                      onPressed: () async {
+                        final String? imageUrl = await controller.getproductos
+                            .subirimagenproducto(
+                                archivo: controller.imagecapturada2.value!,
+                                nombreimagen:
+                                    controller.nombredelaimagen2.value);
+                        await controller.actualizarproductoporid(
+                          Products(
                             id: widget.data.id,
                             nombre: nombre.text,
                             comentario: comentarios.text,
@@ -171,8 +192,10 @@ class _DatoproductosState extends State<Datoproductos> {
                             precioreseller: precioreseller.text,
                             puntaje: puntaje.text,
                             vendidos: vendidos.text,
-                            urlimagen: widget.data.urlimagen,
-                            urlpdf: urlpdf.text));
+                            urlimagen: imageUrl ?? widget.data.urlimagen,
+                            urlpdf: urlpdf.text,
+                          ),
+                        );
                         setState(() {});
                       },
                       icon: const Icon(

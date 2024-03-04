@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:image_network/image_network.dart';
 import 'package:rmc_bussiness/interface/model/products.dart';
 import 'package:rmc_bussiness/settings/function/controller/admin_controller.dart';
 
@@ -24,6 +24,7 @@ class _DatoproductosState extends State<Datoproductos> {
   final precioreseller = TextEditingController();
   final puntaje = TextEditingController();
   final vendidos = TextEditingController();
+  String? imagenurldata;
   final urlpdf = TextEditingController();
 
   @override
@@ -38,6 +39,7 @@ class _DatoproductosState extends State<Datoproductos> {
     precioreseller.text = widget.data.precioreseller;
     puntaje.text = widget.data.puntaje;
     vendidos.text = widget.data.vendidos;
+    imagenurldata = widget.data.urlimagen;
     super.initState();
   }
 
@@ -125,11 +127,21 @@ class _DatoproductosState extends State<Datoproductos> {
                       )
                     ],
                   ),
-                  SizedBox(
-                    child: Image.asset(
-                      widget.data.urlimagen,
-                      width: 200,
-                      height: 200,
+                  GestureDetector(
+                    onTap: () {
+                      controller.capturarimagen();
+                    },
+                    child: Obx(
+                      () => Container(
+                        width: 300,
+                        height: 300,
+                        decoration: const BoxDecoration(),
+                        child: imagenurldata != null
+                            ? ImageNetwork(
+                                image: imagenurldata!, height: 300, width: 300)
+                            : Image.asset('image/agregeproduct.jpg',
+                                height: 300, width: 300),
+                      ),
                     ),
                   )
                 ],
@@ -148,7 +160,22 @@ class _DatoproductosState extends State<Datoproductos> {
                 child: Row(
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.actualizarproductoporid(Products(
+                            id: widget.data.id,
+                            nombre: nombre.text,
+                            comentario: comentarios.text,
+                            description: description.text,
+                            categoria: categoria.text,
+                            subcategoria: subcategoria.text,
+                            preciopublico: preciopublico.text,
+                            precioreseller: precioreseller.text,
+                            puntaje: puntaje.text,
+                            vendidos: vendidos.text,
+                            urlimagen: widget.data.urlimagen,
+                            urlpdf: urlpdf.text));
+                        setState(() {});
+                      },
                       icon: const Icon(
                         Icons.edit,
                         size: 30,

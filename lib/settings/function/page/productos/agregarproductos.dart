@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:rmc_bussiness/settings/function/controller/admin_controller.dart';
 import 'package:rmc_bussiness/settings/function/page/productos/datoproducts.dart';
@@ -84,6 +85,27 @@ class _AgregarproductosState extends State<Agregarproductos> {
               width: 400,
               titulo: 'url para el pdf del producto',
             ),
+            GestureDetector(
+              onTap: () {
+                controller.capturarimagen();
+              },
+              child: Obx(
+                () => Container(
+                  margin: const EdgeInsets.all(10),
+                  width: 300,
+                  height: 300,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: controller.imagecapturada.value != null
+                          ? MemoryImage(controller.imagecapturada.value!)
+                              as ImageProvider
+                          : const AssetImage("image/agregeproduct.jpg"),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: ElevatedButton(
@@ -99,7 +121,7 @@ class _AgregarproductosState extends State<Agregarproductos> {
                     'puntaje': puntaje.text,
                     'vendidos': vendidos.text,
                     'urlpdf': urlpdf.text,
-                    'urlimagen': 'assets/image/agregeproduct.jpg'
+                    'urlimagen': controller.imagenurl.value,
                   };
                   await controller.agregarnuevoproducto(data);
                 },

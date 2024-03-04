@@ -35,6 +35,7 @@ class Products {
       'categoria': categoria,
       'subcategoria': subcategoria,
       'preciopublico': preciopublico,
+      'precioreseller': precioreseller,
       'puntaje': puntaje,
       'vendidos': vendidos,
       'urlimagen': urlimagen,

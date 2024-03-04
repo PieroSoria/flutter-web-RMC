@@ -44,6 +44,7 @@ dependencies:
   whatsapp_unilink: ^2.1.0
   shared_preferences: ^2.2.2
   crypto: ^3.0.3
+  image_picker: ^1.0.7
   
   
 

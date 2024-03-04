@@ -4,4 +4,6 @@ abstract class URLSDirection {
   static const urlpruebasend = 'correoemail.php';
   static const urlpruebasection = 'section.php';
   static const urlpruebasection2 = 'sectiondeleteput.php';
+  static const urluserlogin = 'userlogin.php';
+  static const enviarimagen = 'capturarimagen.php';
 }

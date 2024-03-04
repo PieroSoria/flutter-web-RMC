@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_network/image_network.dart';
 import 'package:rmc_bussiness/interface/model/products.dart';
 import 'package:rmc_bussiness/settings/function/controller/admin_controller.dart';
 
@@ -127,13 +126,19 @@ class _DatoproductosState extends State<Datoproductos> {
                     ],
                   ),
                   imagenurldata != "assets/image/agregeproduct.jpg"
-                      ? ImageNetwork(
-                          image: imagenurldata!,
-                          height: 300,
+                      // ? ImageNetwork(
+                      //     image: imagenurldata!,
+                      //     height: 300,
+                      //     width: 300,
+                      //     onTap: () {
+                      //       controller.capturarimagen2();
+                      //     },
+                      //   )
+                      ? Image.network(
+                          imagenurldata!,
                           width: 300,
-                          onTap: () {
-                            controller.capturarimagen2();
-                          },
+                          height: 300,
+                          fit: BoxFit.fill,
                         )
                       : GestureDetector(
                           onTap: () {

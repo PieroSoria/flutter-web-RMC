@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      initialRoute: Routes.modeproductos,
+      initialRoute: Routes.index,
       getPages: approutes,
     );
   }

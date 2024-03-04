@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_network/image_network.dart';
 import 'package:rmc_bussiness/interface/model/products.dart';

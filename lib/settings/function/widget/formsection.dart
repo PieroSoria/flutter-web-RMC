@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:rmc_bussiness/connection/api/section/getsection.dart';
 import 'package:rmc_bussiness/controller/data/controller_products.dart';
@@ -29,7 +30,8 @@ class _FormSectionState extends State<FormSection> {
     "Promocion",
     "Beneficio",
     "Diferencia",
-    "Caracteristicas"
+    "Caracteristicas",
+    "ImagenSection"
   ];
   final section = TextEditingController();
   final titulo = TextEditingController(text: '');
@@ -48,6 +50,12 @@ class _FormSectionState extends State<FormSection> {
   void initState() {
     controlleradmin.sectionmodeide(sectionmode.first);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controlleradmin.imagecapturada(null);
+    super.dispose();
   }
 
   bool usescrolls = false;
@@ -376,6 +384,32 @@ class _FormSectionState extends State<FormSection> {
                           width: 400,
                           height: 50,
                           titulo: 'Id del Producto',
+                        )
+                      ],
+                    );
+                  case "ImagenSection":
+                    return Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            controlleradmin.capturarimagen();
+                          },
+                          child: Obx(
+                            () => Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: controlleradmin.imagecapturada.value !=
+                                          null
+                                      ? MemoryImage(controlleradmin
+                                          .imagecapturada
+                                          .value!) as ImageProvider
+                                      : const AssetImage(
+                                          'image/agregeproduct.jpg'),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                          ),
                         )
                       ],
                     );

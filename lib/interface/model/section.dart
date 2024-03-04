@@ -10,6 +10,7 @@ class Section {
   Products? producto;
   dynamic ancho;
   dynamic alto;
+  dynamic imagensecion;
   dynamic useScroll;
   dynamic page;
 
@@ -23,6 +24,7 @@ class Section {
       this.producto,
       this.ancho,
       this.alto,
+      this.imagensecion,
       this.useScroll,
       this.page});
 
@@ -39,6 +41,7 @@ class Section {
             : null,
         ancho: json['ancho'],
         alto: json['alto'],
+        imagensecion: json['imagensection'] ?? '',
         useScroll: json['usescroll'],
         page: json['pageview']);
   }

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:rmc_bussiness/controller/Function/tipesection.dart';
 
 import '../../components/layout/footer.dart';
-import '../../components/widget/imagendesection.dart';
 import '../data/controller_products.dart';
 import '../widget/selectwidget.dart';
 
@@ -45,22 +43,7 @@ class _ObtenerSectionPageState extends State<ObtenerSectionPage> {
           return ListView.builder(
             itemCount: section.length,
             itemBuilder: (context, index) {
-              if (index == 0) {
-                return Column(
-                  children: [
-                    const ImagenSection(
-                      imagenurl: "assets/image/deco2.png",
-                      width: double.maxFinite,
-                      height: 300,
-                    ),
-                    SizedBox(
-                      width: 1200,
-                      height: 800,
-                      child: TipeSection(index: index),
-                    ),
-                  ],
-                );
-              } else if (index == section.length - 1) {
+               if (index == section.length - 1) {
                 return Column(
                   children: [
                     Container(

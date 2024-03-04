@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rmc_bussiness/components/widget/buttonhover.dart';
-import 'package:rmc_bussiness/components/widget/imagendesection.dart';
 
 class CardProductMuestra extends StatefulWidget {
   final String urlimagen;
@@ -33,8 +32,8 @@ class _CardProductMuestraState extends State<CardProductMuestra> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ImagenSection(
-            imagenurl: widget.urlimagen,
+          Image.network(
+            widget.urlimagen,
             width: 170,
             height: 200,
           ),

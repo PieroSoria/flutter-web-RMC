@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:rmc_bussiness/controller/Function/tipesection.dart';
 
 import '../../components/layout/footer.dart';
+import '../../components/widget/imagendesection.dart';
 import '../data/controller_products.dart';
 import '../widget/selectwidget.dart';
 
@@ -43,21 +45,21 @@ class _ObtenerSectionPageState extends State<ObtenerSectionPage> {
           return ListView.builder(
             itemCount: section.length,
             itemBuilder: (context, index) {
-               if (index == section.length - 1) {
+              if (index == section.length - 1) {
                 return Column(
                   children: [
                     Container(
                       width: 1200,
-                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      height: 800,
                       child: TipeSection(index: index),
                     ),
                     const FoorterPage(),
                   ],
                 );
               } else {
-                return Container(
+                return SizedBox(
                   width: 1200,
-                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  height: 800,
                   child: TipeSection(index: index),
                 );
               }

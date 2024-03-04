@@ -14,7 +14,7 @@ class Promociondeproduct extends StatefulWidget {
 }
 
 class _PromociondeproductState extends State<Promociondeproduct> {
-  final controllerproducs = Get.put(ControllerProducts());
+  final controllerproduct = Get.put(ControllerProducts());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +37,7 @@ class _PromociondeproductState extends State<Promociondeproduct> {
             height: 300,
             decoration: const BoxDecoration(),
             child: FutureBuilder<List<Products>>(
-              future: controllerproducs.getDataProductMasVendidos("productos"),
+              future: controllerproduct.getDataProductMasVendidos("productos"),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
@@ -45,25 +45,35 @@ class _PromociondeproductState extends State<Promociondeproduct> {
                   );
                 } else {
                   return ListView.builder(
-                      itemCount: 4,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(
-                            snapshot.data![index].nombre,
-                            textAlign: TextAlign.center,
-                          ),
-                          subtitle: Text(
-                            snapshot.data![index].puntaje,
-                            textAlign: TextAlign.center,
-                          ),
-                          leading: Image.asset(
-                            snapshot.data![index].urlimagen,
-                            width: 100,
-                            height: 100,
-                          ),
-                          onTap: () {},
-                        );
-                      });
+                    itemCount:
+                        snapshot.data!.length > 4 ? 4 : snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(
+                          snapshot.data![index].nombre,
+                          textAlign: TextAlign.center,
+                        ),
+                        subtitle: Text(
+                          snapshot.data![index].puntaje,
+                          textAlign: TextAlign.center,
+                        ),
+                        leading: Image.network(
+                          snapshot.data![index].urlimagen,
+                          width: 100,
+                          height: 100,
+                        ),
+                        onTap: () async {
+                          bool resul = await controllerproduct
+                              .saveidbyproduct(snapshot.data![index]);
+                          if (resul) {
+                            Get.toNamed(
+                              '/Cardproduct',
+                            );
+                          }
+                        },
+                      );
+                    },
+                  );
                 }
               },
             ),

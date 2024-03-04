@@ -95,7 +95,7 @@ class _ProductosDestacadosState extends State<ProductosDestacados> {
                           ),
                           shrinkWrap: true,
                           itemCount: 8,
-                          itemBuilder: ((context, index) {
+                          itemBuilder: (context, index) {
                             return CardProductMuestra(
                               urlimagen: data[index].urlimagen,
                               nombreproduct: data[index].nombre,
@@ -111,7 +111,7 @@ class _ProductosDestacadosState extends State<ProductosDestacados> {
                               },
                               categoria: data[index].categoria,
                             );
-                          }),
+                          },
                         );
                       }
                     }

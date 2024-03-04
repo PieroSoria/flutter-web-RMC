@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:rmc_bussiness/components/layout/footer.dart';
 import 'package:rmc_bussiness/components/layout/section/section_destacados.dart';
 import 'package:rmc_bussiness/components/widget/butonhoverwhat.dart';
-import 'package:rmc_bussiness/components/widget/imagendesection.dart';
 import 'package:rmc_bussiness/connection/api/whatsapp/apiwhatsapp.dart';
 import 'package:rmc_bussiness/controller/data/controller_products.dart';
 import 'package:rmc_bussiness/interface/model/products.dart';
@@ -92,8 +91,8 @@ class _CardProductState extends State<CardProduct> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  ImagenSection(
-                                    imagenurl: data!.urlimagen,
+                                  Image.network(
+                                    data!.urlimagen,
                                     width: 300,
                                     height: 300,
                                   ),

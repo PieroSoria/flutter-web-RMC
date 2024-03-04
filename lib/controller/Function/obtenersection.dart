@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:rmc_bussiness/controller/Function/tipesection.dart';
 
@@ -62,18 +63,18 @@ class _ObtenerSectionPageState extends State<ObtenerSectionPage> {
               } else if (index == section.length - 1) {
                 return Column(
                   children: [
-                    SizedBox(
+                    Container(
                       width: 1200,
-                      height: 800,
+                      padding: const EdgeInsets.symmetric(vertical: 5),
                       child: TipeSection(index: index),
                     ),
                     const FoorterPage(),
                   ],
                 );
               } else {
-                return SizedBox(
+                return Container(
                   width: 1200,
-                  height: 800,
+                  padding: const EdgeInsets.symmetric(vertical: 5),
                   child: TipeSection(index: index),
                 );
               }

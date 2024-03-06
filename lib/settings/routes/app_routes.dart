@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:rmc_bussiness/components/widget/card_product.dart';
+import 'package:rmc_bussiness/components/widget/formcontacto.dart';
 import 'package:rmc_bussiness/settings/function/page/actualizar_section.dart';
 import 'package:rmc_bussiness/settings/function/page/admin_desktop.dart';
 import 'package:rmc_bussiness/settings/function/page/admin_settings.dart';
@@ -34,5 +35,9 @@ List<GetPage<dynamic>> get approutes => [
       GetPage(
         name: Routes.modeproductos,
         page: () => const ProductosScreen(),
+      ),
+      GetPage(
+        name: Routes.formcontacto,
+        page: () => const FormContacto(),
       )
     ];

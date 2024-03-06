@@ -23,6 +23,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -80,11 +81,11 @@ class _HomeState extends State<Home> {
                           funcion: () {},
                           ini: const Color.fromARGB(255, 0, 112, 192),
                           fin: Colors.white,
-                          icon: (const Icon(
+                          icon: const Icon(
                             Icons.computer,
                             color: Colors.amber,
                             size: 80,
-                          )),
+                          ),
                         ),
                         ButtonIconContainer(
                           titulo: 'Lector',
@@ -125,7 +126,7 @@ class _HomeState extends State<Home> {
             sizeheigth: 850,
           ),
           SizedBox(
-            height: 700,
+            height: width > 1200 ? 700 : 300,
             child: Stack(
               children: [
                 const Positioned(
@@ -142,15 +143,14 @@ class _HomeState extends State<Home> {
                 Positioned(
                   top: 360,
                   bottom: 10,
-                  left: 120,
-                  right: 1200,
+                  left: 80,
                   child: SizedBox(
-                    width: 130,
+                    width: 600,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         const Text(
-                          "Distribuidor Mayorista de Tecnología para Puntos de Venta",
+                          "Distribuidor Mayorista de Tecnología para Puntos de Venta ",
                           textAlign: TextAlign.start,
                           style: TextStyle(
                             fontFamily: "CenturyGothic",

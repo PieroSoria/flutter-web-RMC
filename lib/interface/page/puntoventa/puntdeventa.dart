@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../controller/Function/obtenersection.dart';
-import '../../../controller/data/controller_products.dart';
-import '../../../controller/widget/selectwidget.dart';
 
 class PuntodeVenta extends StatefulWidget {
   final String pageview;
@@ -14,8 +11,6 @@ class PuntodeVenta extends StatefulWidget {
 }
 
 class _PuntodeVentaState extends State<PuntodeVenta> {
-  final controllerwidget = Get.put(WidgetController());
-  final controllerproduct = Get.put(ControllerProducts());
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

@@ -31,7 +31,7 @@ class Index extends StatefulWidget {
 
 class _IndexState extends State<Index> {
   final controllerwidget = Get.put(WidgetController());
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   late Widget _currentwidget;
   late Tileasset selectMenu;
 
@@ -44,34 +44,83 @@ class _IndexState extends State<Index> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    debugPrint(width.toString());
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
+        automaticallyImplyLeading: true,
+        key: _scaffoldKey,
         backgroundColor: const Color.fromARGB(255, 0, 112, 192),
-        automaticallyImplyLeading: false,
-        title: Navbar(
-            currentWidget: _currentwidget,
-            onselect: (menu) {
-              setState(() {
-                selectMenu = menu;
-                if (selectMenu == sideMenustile[2]) {
-                  controllerwidget.futuresection.clear();
-                  controllerwidget.indexwidget(9);
-                } else if (selectMenu == sideMenustile[4]) {
-                  controllerwidget.futuresection.clear();
-                  controllerwidget.indexwidget(14);
-                } else if (selectMenu == sideMenustile[5]) {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const Dialog(
-                          child: FormContacto(),
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: width < 1220
+            ? const Text(
+                "RMC Solutions & Business",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              )
+            : Navbar(
+                currentWidget: _currentwidget,
+                onselect: (menu) {
+                  setState(
+                    () {
+                      selectMenu = menu;
+                      if (selectMenu == sideMenustile[2]) {
+                        controllerwidget.futuresection.clear();
+                        controllerwidget.indexwidget(9);
+                      } else if (selectMenu == sideMenustile[4]) {
+                        controllerwidget.futuresection.clear();
+                        controllerwidget.indexwidget(14);
+                      } else if (selectMenu == sideMenustile[5]) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const Dialog(
+                              child: FormContacto(),
+                            );
+                          },
                         );
-                      });
-                }
-              });
-            }),
+                      }
+                    },
+                  );
+                },
+              ),
       ),
+      endDrawer: width < 1220
+          ? Drawer(
+              width: width / 1.5,
+              backgroundColor: Colors.white,
+              child: Navbar(
+                currentWidget: _currentwidget,
+                onselect: (menu) {
+                  setState(
+                    () {
+                      selectMenu = menu;
+                      if (selectMenu == sideMenustile[2]) {
+                        controllerwidget.futuresection.clear();
+                        controllerwidget.indexwidget(9);
+                      } else if (selectMenu == sideMenustile[4]) {
+                        controllerwidget.futuresection.clear();
+                        controllerwidget.indexwidget(14);
+                      } else if (selectMenu == sideMenustile[5]) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const Dialog(
+                              child: FormContacto(),
+                            );
+                          },
+                        );
+                      }
+                    },
+                  );
+                  Scaffold.of(context).closeEndDrawer();
+                },
+                columna: true,
+              ),
+            )
+          : null,
       body: Container(
         width: double.infinity,
         height: double.infinity,

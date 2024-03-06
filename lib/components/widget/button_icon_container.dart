@@ -38,8 +38,6 @@ class _ButtonIconContainerState extends State<ButtonIconContainer> {
       child: GestureDetector(
         onTap: widget.funcion,
         child: Container(
-          width: 180,
-          height: 180,
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           decoration: BoxDecoration(
             color: hover ? widget.ini : widget.fin,

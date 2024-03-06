@@ -28,8 +28,12 @@ class _ProductosDestacadosState extends State<ProductosDestacados> {
   final controllerproduct = Get.put(ControllerProducts());
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 50),
+      padding: const EdgeInsets.symmetric(
+        vertical: 50,
+        horizontal: 40,
+      ),
       margin: const EdgeInsets.symmetric(vertical: 20),
       width: double.infinity,
       decoration: BoxDecoration(
@@ -87,14 +91,20 @@ class _ProductosDestacadosState extends State<ProductosDestacados> {
                       } else {
                         return GridView.builder(
                           gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: width > 960 ? 4 : 3,
                             mainAxisSpacing: 30,
                             crossAxisSpacing: 16,
                             mainAxisExtent: 350,
                           ),
                           shrinkWrap: true,
-                          itemCount: 8,
+                          itemCount: width > 960
+                              ? snapshot.data!.length > 8
+                                  ? 8
+                                  : snapshot.data!.length
+                              : snapshot.data!.length > 6
+                                  ? 6
+                                  : snapshot.data!.length,
                           itemBuilder: (context, index) {
                             return CardProductMuestra(
                               urlimagen: data[index].urlimagen,

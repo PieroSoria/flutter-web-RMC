@@ -5,4 +5,5 @@ abstract class Routes {
   static const product = '/Cardproduct';
   static const actualizarsection = '/ActualizarSection';
   static const modeproductos = '/Productosmode';
+  static const formcontacto = '/formcontacto';
 }

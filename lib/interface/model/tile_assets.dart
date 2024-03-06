@@ -33,5 +33,5 @@ List<Tileasset> sideMenustile = [
   Tileasset(
     title: "Quiosco de autoservicio",
   ),
-  Tileasset(title: "Contacto", dropdownItems: null)
+  Tileasset(title: "Contacto")
 ];

@@ -35,25 +35,23 @@ class _ButtonHoverState extends State<ButtonHover> {
       },
       child: GestureDetector(
         onTap: widget.funcion,
-        child: SizedBox(
+        child: Container(
+          decoration: const BoxDecoration(),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             decoration: BoxDecoration(
               color: hover ? widget.ini : widget.fin,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.symmetric(
-                horizontal: hover ? 20 : 20, vertical: hover ? 10 : 10),
-            child: Center(
-              child: Text(
-                widget.titulo,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: hover ? widget.fin : widget.ini,
-                  fontFamily: "Aharoni",
-                  fontWeight: FontWeight.bold,
-                  fontSize: widget.fontsize,
-                ),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: Text(
+              widget.titulo,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: hover ? widget.fin : widget.ini,
+                fontFamily: "Aharoni",
+                fontWeight: FontWeight.bold,
+                fontSize: widget.fontsize,
               ),
             ),
           ),

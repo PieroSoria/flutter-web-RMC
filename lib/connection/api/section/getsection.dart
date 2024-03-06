@@ -75,9 +75,7 @@ class GetSectionApi {
       var url = Uri.https(HostingRMC.hostingprueba,
           URLSDirection.urlpruebasection2, {'id': id});
       debugPrint(url.toString());
-
       var response = await client.get(url);
-
       if (response.statusCode == 200) {
         var jsonDecoderMap = json.decode(response.body);
         debugPrint("Mensaje de los datos a eliminar : $jsonDecoderMap");

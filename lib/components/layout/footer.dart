@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rmc_bussiness/components/widget/text_tap.dart';
 
 class FoorterPage extends StatefulWidget {
@@ -16,6 +14,7 @@ class _FoorterPageState extends State<FoorterPage> {
     double width = MediaQuery.of(context).size.width;
     return Container(
       width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 20),
       decoration: const BoxDecoration(
         color: Color.fromARGB(255, 0, 112, 192),
       ),
@@ -126,7 +125,8 @@ class _FoorterPageState extends State<FoorterPage> {
                       ),
                       const SizedBox(
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
                               "Contactos",

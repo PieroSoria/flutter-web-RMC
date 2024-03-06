@@ -23,9 +23,9 @@ class _SectiondePromocionState extends State<SectiondePromocion> {
   final controllerproducts = Get.put(ControllerProducts());
   @override
   Widget build(BuildContext context) {
+    double wdith = MediaQuery.of(context).size.width;
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       margin: const EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(
@@ -63,33 +63,38 @@ class _SectiondePromocionState extends State<SectiondePromocion> {
               width: 1500,
               height: 360,
               child: FutureBuilder(
-                  future: controllerproducts
-                      .getDataProductMasVendidos(widget.categoria),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: Text("CARGANDO"),
-                      );
-                    } else if (snapshot.data!.isEmpty) {
-                      return const Center(
-                        child: Text("No se encontraron datos"),
-                      );
-                    } else {
-                      final data = snapshot.data!;
-                      return TarjectScrollProducts(
-                        positop: 20,
-                        posileft: 20,
-                        posiright: 20,
-                        posibotom: 20,
-                        paddingcontainer:
-                            const EdgeInsets.symmetric(horizontal: 20),
-                        countitem: 4,
-                        usobuton: true,
-                        tipo: "terminal",
-                        data: data,
-                      );
-                    }
-                  }),
+                future: controllerproducts
+                    .getDataProductMasVendidos(widget.categoria),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: Text("CARGANDO"),
+                    );
+                  } else if (snapshot.data!.isEmpty) {
+                    return const Center(
+                      child: Text("No se encontraron datos"),
+                    );
+                  } else {
+                    final data = snapshot.data!;
+                    return TarjectScrollProducts(
+                      positop: 20,
+                      posileft: 20,
+                      posiright: 20,
+                      posibotom: 20,
+                      paddingcontainer:
+                          const EdgeInsets.symmetric(horizontal: 20),
+                      countitem: wdith > 900
+                          ? 4
+                          : wdith < 700
+                              ? 2
+                              : 3,
+                      usobuton: true,
+                      tipo: "terminal",
+                      data: data,
+                    );
+                  }
+                },
+              ),
             ),
           ],
         ),

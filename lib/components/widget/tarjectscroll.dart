@@ -13,7 +13,7 @@ class TarjectScroll extends StatefulWidget {
   final double posileft;
   final double posiright;
   final double posibotom;
-  final bool titleimagen;
+
   final double imagenheigth;
   final bool usobuton;
   const TarjectScroll({
@@ -25,7 +25,6 @@ class TarjectScroll extends StatefulWidget {
     required this.posileft,
     required this.posiright,
     required this.posibotom,
-    required this.titleimagen,
     required this.imagenheigth,
     required this.usobuton,
   });
@@ -88,7 +87,6 @@ class _TarjectScrollState extends State<TarjectScroll> {
                   itemBuilder: (BuildContext context, int index) {
                     return ContentTarjectScroll(
                       index: index,
-                      data: widget.titleimagen,
                       imagenheight: widget.imagenheigth,
                       imagenurl: widget.imagenrul,
                     );
@@ -102,8 +100,8 @@ class _TarjectScrollState extends State<TarjectScroll> {
           alignment: Alignment.center,
           child: widget.usobuton
               ? Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: widget.titleimagen ? 40 : 10),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,

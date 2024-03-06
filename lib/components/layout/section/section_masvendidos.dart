@@ -7,7 +7,8 @@ import '../../widget/tarject_scroll_products.dart';
 class SectionMasVendidos extends StatefulWidget {
   final String categoria;
   final String titulo;
-  const SectionMasVendidos({super.key, required this.categoria, required this.titulo});
+  const SectionMasVendidos(
+      {super.key, required this.categoria, required this.titulo});
 
   @override
   State<SectionMasVendidos> createState() => _SectionMasVendidosState();
@@ -17,6 +18,7 @@ class _SectionMasVendidosState extends State<SectionMasVendidos> {
   final controllerproduct = Get.put(ControllerProducts());
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 50),
       margin: const EdgeInsets.symmetric(vertical: 20),
@@ -29,7 +31,7 @@ class _SectionMasVendidosState extends State<SectionMasVendidos> {
       child: Center(
         child: SizedBox(
           width: 1000,
-          height: 450,
+          height: 500,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -37,7 +39,7 @@ class _SectionMasVendidosState extends State<SectionMasVendidos> {
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Text(
                   widget.titulo,
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontFamily: "CenturyGothic",
                     color: Colors.black,
@@ -67,7 +69,7 @@ class _SectionMasVendidosState extends State<SectionMasVendidos> {
                           posibotom: 20,
                           paddingcontainer:
                               const EdgeInsets.symmetric(horizontal: 5),
-                          countitem: 3,
+                          countitem: width > 690 ? 3 : 2,
                           usobuton: true,
                           tipo: 'masvendidos',
                           data: data,

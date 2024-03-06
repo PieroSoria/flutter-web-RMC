@@ -42,7 +42,6 @@ class _TipeSectionState extends State<TipeSection> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 700,
       child: Obx(() {
         final sections = controllerwidget.futuresection;
         if (sections[widget.index].section == "Container") {

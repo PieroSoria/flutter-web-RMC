@@ -84,7 +84,6 @@ class _TarjectScrollProductsState extends State<TarjectScrollProducts> {
               },
               child: Container(
                 width: double.infinity,
-                height: double.infinity,
                 decoration: const BoxDecoration(),
                 child: HorizontalListView.builder(
                   crossAxisCount: widget.countitem,

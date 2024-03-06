@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:rmc_bussiness/controller/Function/tipesection.dart';
 
 import '../../components/layout/footer.dart';
-import '../../components/widget/imagendesection.dart';
 import '../data/controller_products.dart';
 import '../widget/selectwidget.dart';
 
@@ -50,7 +49,6 @@ class _ObtenerSectionPageState extends State<ObtenerSectionPage> {
                   children: [
                     Container(
                       width: 1200,
-                      height: 800,
                       child: TipeSection(index: index),
                     ),
                     const FoorterPage(),
@@ -59,7 +57,6 @@ class _ObtenerSectionPageState extends State<ObtenerSectionPage> {
               } else {
                 return SizedBox(
                   width: 1200,
-                  height: 800,
                   child: TipeSection(index: index),
                 );
               }

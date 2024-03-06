@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rmc_bussiness/components/layout/section/section_masvendidos.dart';
 import 'package:rmc_bussiness/components/widget/button_icon_container.dart';
-import 'package:rmc_bussiness/components/widget/buttonhover.dart';
-import 'package:rmc_bussiness/components/widget/imagendesection.dart';
 import 'package:rmc_bussiness/components/widget/tarjectscroll.dart';
 
 import '../../components/layout/footer.dart';

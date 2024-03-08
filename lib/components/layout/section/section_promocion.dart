@@ -89,7 +89,6 @@ class _SectiondePromocionState extends State<SectiondePromocion> {
                               ? 2
                               : 3,
                       usobuton: true,
-                      tipo: "terminal",
                       data: data,
                     );
                   }

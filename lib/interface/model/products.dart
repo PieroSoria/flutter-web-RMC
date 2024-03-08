@@ -11,6 +11,7 @@ class Products {
   dynamic vendidos;
   dynamic urlimagen;
   dynamic urlpdf;
+  dynamic urlyoutube;
 
   Products(
       {this.id,
@@ -24,7 +25,8 @@ class Products {
       this.puntaje,
       this.vendidos,
       this.urlimagen,
-      this.urlpdf});
+      this.urlpdf,
+      this.urlyoutube});
 
   Map<String, dynamic> toJson() {
     return {
@@ -40,6 +42,7 @@ class Products {
       'vendidos': vendidos,
       'urlimagen': urlimagen,
       'urlpdf': urlpdf,
+      'urlyoutube': urlyoutube,
     };
   }
 
@@ -57,6 +60,7 @@ class Products {
       vendidos: json['vendidos'],
       urlimagen: json['urlimagen'],
       urlpdf: json['urlpdf'],
+      urlyoutube: json['urlyoutube'],
     );
   }
 }

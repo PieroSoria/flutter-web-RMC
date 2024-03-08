@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rmc_bussiness/components/layout/section/section_banner.dart';
 import 'package:rmc_bussiness/components/layout/section/section_masvendidos.dart';
 import 'package:rmc_bussiness/components/widget/button_icon_container.dart';
-import 'package:rmc_bussiness/components/widget/tarjectscroll.dart';
 
 import '../../components/layout/footer.dart';
 import '../../components/layout/section/section_destacados.dart';
@@ -25,24 +25,7 @@ class _HomeState extends State<Home> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
-            height: width > 600 ? 500 : 200,
-            child: TarjectScroll(
-              crosaxiscount: 1,
-              imagenrul: [
-                "assets/image/deco2.png",
-                "assets/image/deco2.png",
-                "assets/image/deco2.png",
-              ],
-              paddingcontainer: const EdgeInsets.symmetric(horizontal: 0),
-              positop: 0,
-              posileft: 0,
-              posiright: 0,
-              posibotom: 0,
-              imagenheigth: width > 600 ? 500 : 200,
-              usobuton: true,
-            ),
-          ),
+          SectionBanners(width: width, listaimagen: [],),
           const ProductosDestacados(
             titulo: "Impresoras Destacadas",
             categoria: "Impresora",
@@ -51,12 +34,18 @@ class _HomeState extends State<Home> {
             sizeheigth: 500,
           ),
           Container(
-            decoration: const BoxDecoration(),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: Colors.grey,
+                width: 2,
+              ),
+            ),
             child: Center(
               child: SizedBox(
                 width: 700,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 20),
@@ -132,3 +121,5 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
+

@@ -52,7 +52,7 @@ class _ProductosDestacadosState extends State<ProductosDestacados> {
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Text(
                   widget.titulo,
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontFamily: "CenturyGothic",
                     color: Colors.black,
@@ -85,7 +85,7 @@ class _ProductosDestacadosState extends State<ProductosDestacados> {
                               const EdgeInsets.symmetric(horizontal: 5),
                           countitem: 3,
                           usobuton: true,
-                          tipo: 'destacable',
+                     
                           data: data,
                         );
                       } else {

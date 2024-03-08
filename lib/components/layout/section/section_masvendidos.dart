@@ -71,7 +71,7 @@ class _SectionMasVendidosState extends State<SectionMasVendidos> {
                               const EdgeInsets.symmetric(horizontal: 5),
                           countitem: width > 690 ? 3 : 2,
                           usobuton: true,
-                          tipo: 'masvendidos',
+                          
                           data: data,
                         );
                       }

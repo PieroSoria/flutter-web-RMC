@@ -24,6 +24,7 @@ class _DatoproductosState extends State<Datoproductos> {
   final vendidos = TextEditingController();
   String? imagenurldata;
   final urlpdf = TextEditingController();
+  final urlyoutube = TextEditingController();
 
   @override
   void initState() {
@@ -38,6 +39,7 @@ class _DatoproductosState extends State<Datoproductos> {
     puntaje.text = widget.data.puntaje;
     vendidos.text = widget.data.vendidos;
     imagenurldata = widget.data.urlimagen;
+    urlyoutube.text = widget.data.urlyoutube;
     super.initState();
   }
 
@@ -122,18 +124,15 @@ class _DatoproductosState extends State<Datoproductos> {
                         controller: urlpdf,
                         width: 400,
                         titulo: 'url para el pdf del producto',
+                      ),
+                      InputformProducts(
+                        controller: urlyoutube,
+                        width: 400,
+                        titulo: "url para el video del producto",
                       )
                     ],
                   ),
                   imagenurldata != "assets/image/agregeproduct.jpg"
-                      // ? ImageNetwork(
-                      //     image: imagenurldata!,
-                      //     height: 300,
-                      //     width: 300,
-                      //     onTap: () {
-                      //       controller.capturarimagen2();
-                      //     },
-                      //   )
                       ? Image.network(
                           imagenurldata!,
                           width: 300,

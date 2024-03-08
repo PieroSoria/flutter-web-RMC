@@ -22,11 +22,11 @@ class _AgregarproductosState extends State<Agregarproductos> {
   final puntaje = TextEditingController();
   final vendidos = TextEditingController();
   final urlpdf = TextEditingController();
+  final urlyoutube = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 600,
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 60),
       decoration:
           const BoxDecoration(color: Color.fromARGB(255, 224, 224, 224)),
       child: SingleChildScrollView(
@@ -83,6 +83,11 @@ class _AgregarproductosState extends State<Agregarproductos> {
               controller: urlpdf,
               width: 400,
               titulo: 'url para el pdf del producto',
+            ),
+            InputformProducts(
+              controller: urlyoutube,
+              width: 400,
+              titulo: 'url para el video del producto',
             ),
             GestureDetector(
               onTap: () {

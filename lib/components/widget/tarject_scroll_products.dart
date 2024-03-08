@@ -14,7 +14,6 @@ class TarjectScrollProducts extends StatefulWidget {
   final double posibotom;
   final int countitem;
   final bool usobuton;
-  final String tipo;
   final List<Products> data;
   final EdgeInsetsGeometry paddingcontainer;
   const TarjectScrollProducts(
@@ -26,7 +25,7 @@ class TarjectScrollProducts extends StatefulWidget {
       required this.paddingcontainer,
       required this.countitem,
       required this.usobuton,
-      required this.tipo,
+    
       required this.data});
 
   @override

@@ -19,7 +19,7 @@ class _ImagenSectionState extends State<ImagenSection> {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
-      child: Image.asset(
+      child: Image.network(
         widget.imagenurl,
         fit: BoxFit.fill,
         width: widget.width,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rmc_bussiness/settings/function/controller/admin_controller.dart';
 import 'package:rmc_bussiness/settings/function/page/productos/datoproducts.dart';
+import 'package:rmc_bussiness/settings/routes/routes.dart';
 
 class Agregarproductos extends StatefulWidget {
   const Agregarproductos({super.key});
@@ -27,13 +28,21 @@ class _AgregarproductosState extends State<Agregarproductos> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-      decoration:
-          const BoxDecoration(color: Color.fromARGB(255, 224, 224, 224)),
+      decoration: const BoxDecoration(
+        color: Color.fromARGB(255, 255, 254, 254),
+      ),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Agregar un Nuevo Producto"),
+            const Text(
+              "Agregar un Nuevo Producto",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 30,
+                fontFamily: "CenturyGothic",
+              ),
+            ),
             InputformProducts(
               controller: nombre,
               width: 400,
@@ -96,14 +105,14 @@ class _AgregarproductosState extends State<Agregarproductos> {
               child: Obx(
                 () => Container(
                   margin: const EdgeInsets.all(10),
-                  width: 300,
-                  height: 300,
+                  width: 200,
+                  height: 200,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: controller.imagecapturada.value != null
                           ? MemoryImage(controller.imagecapturada.value!)
                               as ImageProvider
-                          : const AssetImage("image/agregeproduct.jpg"),
+                          : const AssetImage("icons2/galeria-de-imagenes.png"),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -112,51 +121,71 @@ class _AgregarproductosState extends State<Agregarproductos> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
-              child: ElevatedButton(
-                onPressed: () async {
-                  final String? imageUrl = await controller.getproductos
-                      .subirimagenproducto(
-                          archivo: controller.imagecapturada.value!,
-                          nombreimagen: controller.nombredelaimagen.value);
-                  final data = {
-                    'nombre': nombre.text,
-                    'description': description.text,
-                    'comentario': comentarios.text,
-                    'categoria': categoria.text,
-                    'subcategoria': subcategoria.text,
-                    'preciopublico': preciopublico.text,
-                    'precioreseller': precioreseller.text,
-                    'puntaje': puntaje.text,
-                    'vendidos': vendidos.text,
-                    'urlpdf': urlpdf.text,
-                    'urlimagen': imageUrl ?? "image/agregeproduct.jpg",
-                    'urlyoutube': urlyoutube.text,
-                  };
-                  await controller.agregarnuevoproducto(data);
-                  setState(() {
-                    nombre.text = "";
-                    description.text = "";
-                    comentarios.text = "";
-                    categoria.text = "";
-                    subcategoria.text = "";
-                    preciopublico.text = "";
-                    precioreseller.text = "";
-                    puntaje.text = "";
-                    vendidos.text = "";
-                    urlpdf.text = "";
-                    controller.imagecapturada(null);
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 20,
-                    horizontal: 20,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    onPressed: () async {
+                      Get.toNamed(Routes.mostrarproducto);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 20,
+                        horizontal: 20,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    child: const Text("Mostrar productos"),
                   ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+                  ElevatedButton(
+                    onPressed: () async {
+                      final String? imageUrl = await controller.getproductos
+                          .subirimagenproducto(
+                              archivo: controller.imagecapturada.value!,
+                              nombreimagen: controller.nombredelaimagen.value);
+                      final data = {
+                        'nombre': nombre.text,
+                        'description': description.text,
+                        'comentario': comentarios.text,
+                        'categoria': categoria.text,
+                        'subcategoria': subcategoria.text,
+                        'preciopublico': preciopublico.text,
+                        'precioreseller': precioreseller.text,
+                        'puntaje': puntaje.text,
+                        'vendidos': vendidos.text,
+                        'urlpdf': urlpdf.text,
+                        'urlimagen': imageUrl ?? "icons2/galeria-de-imagenes.png",
+                        'urlyoutube': urlyoutube.text,
+                      };
+                      await controller.agregarnuevoproducto(data);
+                      setState(() {
+                        nombre.text = "";
+                        description.text = "";
+                        comentarios.text = "";
+                        categoria.text = "";
+                        subcategoria.text = "";
+                        preciopublico.text = "";
+                        precioreseller.text = "";
+                        puntaje.text = "";
+                        vendidos.text = "";
+                        urlpdf.text = "";
+                        controller.imagecapturada(null);
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 20,
+                        horizontal: 20,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    child: const Text("Agregar Producto"),
                   ),
-                ),
-                child: const Text("Agregar Producto"),
+                ],
               ),
             )
           ],

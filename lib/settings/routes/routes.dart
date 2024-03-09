@@ -6,4 +6,6 @@ abstract class Routes {
   static const actualizarsection = '/ActualizarSection';
   static const modeproductos = '/Productosmode';
   static const formcontacto = '/formcontacto';
+  static const mostrarproducto = '/mostrarproducto';
+  static const mostrardetalleid = '/mostrardetalle';
 }

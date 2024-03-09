@@ -4,6 +4,8 @@ import 'package:rmc_bussiness/components/widget/formcontacto.dart';
 import 'package:rmc_bussiness/settings/function/page/actualizar_section.dart';
 import 'package:rmc_bussiness/settings/function/page/admin_desktop.dart';
 import 'package:rmc_bussiness/settings/function/page/admin_settings.dart';
+import 'package:rmc_bussiness/settings/function/page/productos/dataproducto_id_detalle.dart';
+import 'package:rmc_bussiness/settings/function/page/productos/mostrar_productos.dart';
 import 'package:rmc_bussiness/settings/function/page/productos/productos.dart';
 
 import '../../interface/page/index.dart';
@@ -39,5 +41,13 @@ List<GetPage<dynamic>> get approutes => [
       GetPage(
         name: Routes.formcontacto,
         page: () => const FormContacto(),
+      ),
+      GetPage(
+        name: Routes.mostrarproducto,
+        page: () => const MostrarProductos(),
+      ),
+      GetPage(
+        name: Routes.mostrardetalleid,
+        page: () => const DetalleProductoId(data: null,),
       )
     ];

@@ -48,195 +48,191 @@ class _DatoproductosState extends State<Datoproductos> {
     double width = MediaQuery.of(context).size.width;
     debugPrint(width.toString());
     return Container(
-      margin: EdgeInsets.symmetric(
-        vertical: 20,
-        horizontal: width > 600 ? 0 : 20,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(40),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: width > 600
-          ? Row(
+        margin: EdgeInsets.symmetric(
+          vertical: 20,
+          horizontal: width > 600 ? 10 : 20,
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: width > 600 ? 10 : 10,
+          vertical: 20,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(width > 600 ? 40 : 10),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InputformProducts(
+                  controller: nombre,
+                  width: 400,
+                  titulo: 'nombre del producto',
+                ),
+                InputformProducts(
+                  controller: description,
+                  width: 400,
+                  titulo: 'descripcion del producto',
+                ),
+                InputformProducts(
+                  controller: categoria,
+                  width: 400,
+                  titulo: 'categoria del producto',
+                ),
+                InputformProducts(
+                  controller: subcategoria,
+                  width: 400,
+                  titulo: 'subcategoria del producto',
+                ),
+                InputformProducts(
+                  controller: comentarios,
+                  width: 400,
+                  titulo: 'comentarios del producto',
+                ),
+                InputformProducts(
+                  controller: preciopublico,
+                  width: 400,
+                  titulo: 'precio publico del producto',
+                ),
+                InputformProducts(
+                  controller: precioreseller,
+                  width: 400,
+                  titulo: 'precio reseller del producto',
+                ),
+                InputformProducts(
+                  controller: puntaje,
+                  width: 400,
+                  titulo: 'puntaje del producto',
+                ),
+                InputformProducts(
+                  controller: vendidos,
+                  width: 400,
+                  titulo: 'cantidad de veces que el producto fue vendido',
+                ),
+                InputformProducts(
+                  controller: urlpdf,
+                  width: 400,
+                  titulo: 'url para el pdf del producto',
+                ),
+                InputformProducts(
+                  controller: urlyoutube,
+                  width: 400,
+                  titulo: "url para el video del producto",
+                )
+              ],
+            ),
+            Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Row(
                   children: [
-                    InputformProducts(
-                      controller: nombre,
-                      width: 400,
-                      titulo: 'nombre del producto',
+                    IconButton(
+                      onPressed: () async {
+                        if (controller.imagecapturada2.value != null &&
+                            controller.nombredelaimagen2.value != "") {
+                          final String? imageUrl = await controller.getproductos
+                              .subirimagenproducto(
+                                  archivo: controller.imagecapturada2.value!,
+                                  nombreimagen:
+                                      controller.nombredelaimagen2.value);
+                          final data = {
+                            'id': widget.data.id,
+                            'nombre': nombre.text,
+                            'description': description.text,
+                            'comentario': comentarios.text,
+                            'categoria': categoria.text,
+                            'subcategoria': subcategoria.text,
+                            'preciopublico': preciopublico.text,
+                            'precioreseller': precioreseller.text,
+                            'puntaje': puntaje.text,
+                            'vendidos': vendidos.text,
+                            'urlpdf': urlpdf.text,
+                            'urlimagen': imageUrl ?? widget.data.urlimagen,
+                            'urlyoutube': urlyoutube.text,
+                          };
+                          await controller.actualizarproductoporid(data);
+                        } else {
+                          final data = {
+                            'id': widget.data.id,
+                            'nombre': nombre.text,
+                            'description': description.text,
+                            'comentario': comentarios.text,
+                            'categoria': categoria.text,
+                            'subcategoria': subcategoria.text,
+                            'preciopublico': preciopublico.text,
+                            'precioreseller': precioreseller.text,
+                            'puntaje': puntaje.text,
+                            'vendidos': vendidos.text,
+                            'urlpdf': urlpdf.text,
+                            'urlimagen': widget.data.urlimagen,
+                            'urlyoutube': urlyoutube.text,
+                          };
+                          debugPrint(data.toString());
+                          await controller.actualizarproductoporid(data);
+                        }
+
+                        setState(() {});
+                      },
+                      icon: const Icon(
+                        Icons.edit,
+                        size: 30,
+                      ),
                     ),
-                    InputformProducts(
-                      controller: description,
-                      width: 400,
-                      titulo: 'descripcion del producto',
+                    IconButton(
+                      onPressed: () {
+                        controller.deleteproductbyid(widget.data.id);
+                        setState(() {});
+                      },
+                      icon: const Icon(
+                        Icons.delete,
+                        size: 30,
+                      ),
                     ),
-                    InputformProducts(
-                      controller: categoria,
-                      width: 400,
-                      titulo: 'categoria del producto',
-                    ),
-                    InputformProducts(
-                      controller: subcategoria,
-                      width: 400,
-                      titulo: 'subcategoria del producto',
-                    ),
-                    InputformProducts(
-                      controller: comentarios,
-                      width: 400,
-                      titulo: 'comentarios del producto',
-                    ),
-                    InputformProducts(
-                      controller: preciopublico,
-                      width: 400,
-                      titulo: 'precio publico del producto',
-                    ),
-                    InputformProducts(
-                      controller: precioreseller,
-                      width: 400,
-                      titulo: 'precio reseller del producto',
-                    ),
-                    InputformProducts(
-                      controller: puntaje,
-                      width: 400,
-                      titulo: 'puntaje del producto',
-                    ),
-                    InputformProducts(
-                      controller: vendidos,
-                      width: 400,
-                      titulo: 'cantidad de veces que el producto fue vendido',
-                    ),
-                    InputformProducts(
-                      controller: urlpdf,
-                      width: 400,
-                      titulo: 'url para el pdf del producto',
-                    ),
-                    InputformProducts(
-                      controller: urlyoutube,
-                      width: 400,
-                      titulo: "url para el video del producto",
-                    )
                   ],
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Row(
-                      children: [
-                        IconButton(
-                          onPressed: () async {
-                            if (controller.imagecapturada2.value != null &&
-                                controller.nombredelaimagen2.value != "") {
-                              final String? imageUrl = await controller
-                                  .getproductos
-                                  .subirimagenproducto(
-                                      archivo:
-                                          controller.imagecapturada2.value!,
-                                      nombreimagen:
-                                          controller.nombredelaimagen2.value);
-                              final data = {
-                                'id': widget.data.id,
-                                'nombre': nombre.text,
-                                'description': description.text,
-                                'comentario': comentarios.text,
-                                'categoria': categoria.text,
-                                'subcategoria': subcategoria.text,
-                                'preciopublico': preciopublico.text,
-                                'precioreseller': precioreseller.text,
-                                'puntaje': puntaje.text,
-                                'vendidos': vendidos.text,
-                                'urlpdf': urlpdf.text,
-                                'urlimagen': imageUrl ?? widget.data.urlimagen,
-                                'urlyoutube': urlyoutube.text,
-                              };
-                              await controller.actualizarproductoporid(data);
-                            } else {
-                              final data = {
-                                'id': widget.data.id,
-                                'nombre': nombre.text,
-                                'description': description.text,
-                                'comentario': comentarios.text,
-                                'categoria': categoria.text,
-                                'subcategoria': subcategoria.text,
-                                'preciopublico': preciopublico.text,
-                                'precioreseller': precioreseller.text,
-                                'puntaje': puntaje.text,
-                                'vendidos': vendidos.text,
-                                'urlpdf': urlpdf.text,
-                                'urlimagen': widget.data.urlimagen,
-                                'urlyoutube': urlyoutube.text,
-                              };
-                              debugPrint(data.toString());
-                              await controller.actualizarproductoporid(data);
-                            }
-
-                            setState(() {});
-                          },
-                          icon: const Icon(
-                            Icons.edit,
-                            size: 30,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            controller.deleteproductbyid(widget.data.id);
-                            setState(() {});
-                          },
-                          icon: const Icon(
-                            Icons.delete,
-                            size: 30,
-                          ),
-                        ),
-                      ],
-                    ),
-                    imagenurldata != "assets/image/agregeproduct.jpg"
-                        ? Image.network(
-                            imagenurldata!,
+                imagenurldata != "icons2/galeria-de-imagenes.png"
+                    ? Image.network(
+                        imagenurldata!,
+                        width: 300,
+                        height: 300,
+                        fit: BoxFit.fill,
+                      )
+                    : GestureDetector(
+                        onTap: () {
+                          controller.capturarimagen2();
+                        },
+                        child: Obx(
+                          () => Container(
                             width: 300,
                             height: 300,
-                            fit: BoxFit.fill,
-                          )
-                        : GestureDetector(
-                            onTap: () {
-                              controller.capturarimagen2();
-                            },
-                            child: Obx(
-                              () => Container(
-                                width: 300,
-                                height: 300,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image:
-                                        controller.imagecapturada2.value != null
-                                            ? MemoryImage(controller
-                                                .imagecapturada2
-                                                .value!) as ImageProvider
-                                            : const AssetImage(
-                                                'image/agregeproduct.jpg'),
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: controller.imagecapturada2.value != null
+                                    ? MemoryImage(
+                                            controller.imagecapturada2.value!)
+                                        as ImageProvider
+                                    : const AssetImage(
+                                        'icons2/galeria-de-imagenes.png'),
+                                fit: BoxFit.fill,
                               ),
                             ),
                           ),
-                  ],
-                )
+                        ),
+                      ),
               ],
             )
-          : Column(
-              children: [Text("Hola")],
-            ),
-    );
+          ],
+        ));
   }
 }
 

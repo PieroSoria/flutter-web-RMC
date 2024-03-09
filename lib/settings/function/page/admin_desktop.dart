@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:rmc_bussiness/settings/function/model/tilesection.dart';
 import 'package:rmc_bussiness/settings/function/page/vistadelossection.dart';
 import 'package:rmc_bussiness/settings/function/widget/formsection.dart';
 
@@ -61,9 +60,10 @@ class _AdminDesktopState extends State<AdminDesktop> {
             ),
       body: Container(
         width: double.infinity,
+        height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('image/fondo.png'),
+            image: AssetImage('assets/image/fondo.png'),
             fit: BoxFit.fill,
           ),
         ),

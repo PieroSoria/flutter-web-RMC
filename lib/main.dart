@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      initialRoute: Routes.admindesktop,
+      initialRoute: Routes.index,
       getPages: approutes,
     );
   }

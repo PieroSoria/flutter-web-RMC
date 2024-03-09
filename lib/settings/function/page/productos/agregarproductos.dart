@@ -26,7 +26,7 @@ class _AgregarproductosState extends State<Agregarproductos> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 60),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       decoration:
           const BoxDecoration(color: Color.fromARGB(255, 224, 224, 224)),
       child: SingleChildScrollView(
@@ -130,6 +130,7 @@ class _AgregarproductosState extends State<Agregarproductos> {
                     'vendidos': vendidos.text,
                     'urlpdf': urlpdf.text,
                     'urlimagen': imageUrl ?? "image/agregeproduct.jpg",
+                    'urlyoutube': urlyoutube.text,
                   };
                   await controller.agregarnuevoproducto(data);
                   setState(() {

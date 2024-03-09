@@ -48,19 +48,19 @@ class Products {
 
   factory Products.fromJson(Map<String, dynamic> json) {
     return Products(
-      id: json['id'],
-      nombre: json['nombre'],
-      comentario: json['comentario'],
-      description: json['description'],
-      categoria: json['categoria'],
-      subcategoria: json['subcategoria'],
-      preciopublico: json['preciopublico'],
-      precioreseller: json['precioreseller'],
-      puntaje: json['puntaje'],
-      vendidos: json['vendidos'],
-      urlimagen: json['urlimagen'],
-      urlpdf: json['urlpdf'],
-      urlyoutube: json['urlyoutube'],
+      id: json['id'] ?? '',
+      nombre: json['nombre'] ?? '',
+      comentario: json['comentario'] ?? '',
+      description: json['description'] ?? '',
+      categoria: json['categoria'] ?? '',
+      subcategoria: json['subcategoria'] ?? '',
+      preciopublico: json['preciopublico'] ?? '',
+      precioreseller: json['precioreseller'] ?? '',
+      puntaje: json['puntaje'] ?? '',
+      vendidos: json['vendidos'] ?? '',
+      urlimagen: json['urlimagen'] ?? '',
+      urlpdf: json['urlpdf'] ?? '',
+      urlyoutube: json['urlyoutube'] ?? '',
     );
   }
 }

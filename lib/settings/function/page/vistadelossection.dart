@@ -157,17 +157,14 @@ class _VistadelosSectionState extends State<VistadelosSection> {
                               ),
                             ),
                           ),
-                          InkWell(
-                            onTap: () {
+                          IconButton(
+                            onPressed: () {
                               eliminaritem(context, index);
                             },
-                            child: const ClipRRect(
-                              clipBehavior: Clip.hardEdge,
-                              child: Icon(
-                                Icons.delete,
-                                size: 45,
-                                color: Colors.white,
-                              ),
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                              size: 40,
                             ),
                           )
                         ],

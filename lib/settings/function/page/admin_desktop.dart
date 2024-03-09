@@ -43,7 +43,7 @@ class _AdminDesktopState extends State<AdminDesktop> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(left: 40),
+                    margin: const EdgeInsets.symmetric(vertical: 40),
                     padding: const EdgeInsets.symmetric(vertical: 20),
                     width: 250,
                     decoration: BoxDecoration(
@@ -124,22 +124,18 @@ class _AdminDesktopState extends State<AdminDesktop> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  Container(
+                    padding: const EdgeInsets.symmetric(vertical: 40),
+                    margin: const EdgeInsets.symmetric(vertical: 20),
+                    decoration: BoxDecoration(
+                      color: Colors.greenAccent,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                     width: 500,
-                    child: Center(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 40),
-                        margin: const EdgeInsets.symmetric(vertical: 20),
-                        decoration: BoxDecoration(
-                          color: Colors.greenAccent,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        width: double.infinity,
-                        child: const SingleChildScrollView(
-                          child: FormSection(
-                            id: '',
-                          ),
-                        ),
+                    height: 900,
+                    child: const SingleChildScrollView(
+                      child: FormSection(
+                        id: '',
                       ),
                     ),
                   ),
@@ -154,113 +150,107 @@ class _AdminDesktopState extends State<AdminDesktop> {
                   ),
                 ],
               )
-            : SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(left: 40),
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      width: 250,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(143, 197, 197, 197),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            ...sidemenus.map(
-                              (tilemenu) => IconTap(
-                                funcion: () {
-                                  setState(() {
-                                    if (tilemenu == sidemenus[0]) {
-                                      controlleradmin.pageview(tilemenu.titulo);
-                                      controlleradmin
-                                          .refreshlistsection(tilemenu.titulo);
-                                    } else if (tilemenu == sidemenus[1]) {
-                                      controlleradmin.pageview(tilemenu.titulo);
-                                      controlleradmin
-                                          .refreshlistsection(tilemenu.titulo);
-                                    } else if (tilemenu == sidemenus[2]) {
-                                      controlleradmin.pageview(tilemenu.titulo);
-                                      controlleradmin
-                                          .refreshlistsection(tilemenu.titulo);
-                                    } else if (tilemenu == sidemenus[3]) {
-                                      controlleradmin.pageview(tilemenu.titulo);
-                                      controlleradmin
-                                          .refreshlistsection(tilemenu.titulo);
-                                    } else if (tilemenu == sidemenus[4]) {
-                                      controlleradmin.pageview(tilemenu.titulo);
-                                      controlleradmin
-                                          .refreshlistsection(tilemenu.titulo);
-                                    } else if (tilemenu == sidemenus[5]) {
-                                      controlleradmin.pageview(tilemenu.titulo);
-                                      controlleradmin
-                                          .refreshlistsection(tilemenu.titulo);
-                                    } else if (tilemenu == sidemenus[6]) {
-                                      controlleradmin.pageview(tilemenu.titulo);
-                                      controlleradmin
-                                          .refreshlistsection(tilemenu.titulo);
-                                    } else if (tilemenu == sidemenus[7]) {
-                                      controlleradmin.pageview(tilemenu.titulo);
-                                      controlleradmin
-                                          .refreshlistsection(tilemenu.titulo);
-                                    } else if (tilemenu == sidemenus[8]) {
-                                      controlleradmin.pageview(tilemenu.titulo);
-                                      controlleradmin
-                                          .refreshlistsection(tilemenu.titulo);
-                                    } else if (tilemenu == sidemenus[9]) {
-                                      controlleradmin.pageview(tilemenu.titulo);
-                                      controlleradmin
-                                          .refreshlistsection(tilemenu.titulo);
-                                    } else if (tilemenu == sidemenus[10]) {
-                                      controlleradmin.pageview(tilemenu.titulo);
-                                      controlleradmin
-                                          .refreshlistsection(tilemenu.titulo);
-                                    } else if (tilemenu == sidemenus[11]) {
-                                      controlleradmin.pageview(tilemenu.titulo);
-                                      controlleradmin
-                                          .refreshlistsection(tilemenu.titulo);
-                                    } else if (tilemenu == sidemenus[12]) {
-                                      controlleradmin.pageview(tilemenu.titulo);
-                                      controlleradmin
-                                          .refreshlistsection(tilemenu.titulo);
-                                    } else if (tilemenu == sidemenus[13]) {
-                                      controlleradmin.pageview(tilemenu.titulo);
-                                      controlleradmin
-                                          .refreshlistsection(tilemenu.titulo);
-                                    }
-                                  });
-                                },
-                                titulo: tilemenu.titulo,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+            : ListView(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    width: 250,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(143, 197, 197, 197),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 20),
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      decoration: BoxDecoration(
-                        color: Colors.greenAccent,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      width: double.infinity,
-                      child: const SingleChildScrollView(
-                        child: FormSection(
-                          id: '',
-                        ),
-                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ...sidemenus.map(
+                          (tilemenu) => IconTap(
+                            funcion: () {
+                              setState(() {
+                                if (tilemenu == sidemenus[0]) {
+                                  controlleradmin.pageview(tilemenu.titulo);
+                                  controlleradmin
+                                      .refreshlistsection(tilemenu.titulo);
+                                } else if (tilemenu == sidemenus[1]) {
+                                  controlleradmin.pageview(tilemenu.titulo);
+                                  controlleradmin
+                                      .refreshlistsection(tilemenu.titulo);
+                                } else if (tilemenu == sidemenus[2]) {
+                                  controlleradmin.pageview(tilemenu.titulo);
+                                  controlleradmin
+                                      .refreshlistsection(tilemenu.titulo);
+                                } else if (tilemenu == sidemenus[3]) {
+                                  controlleradmin.pageview(tilemenu.titulo);
+                                  controlleradmin
+                                      .refreshlistsection(tilemenu.titulo);
+                                } else if (tilemenu == sidemenus[4]) {
+                                  controlleradmin.pageview(tilemenu.titulo);
+                                  controlleradmin
+                                      .refreshlistsection(tilemenu.titulo);
+                                } else if (tilemenu == sidemenus[5]) {
+                                  controlleradmin.pageview(tilemenu.titulo);
+                                  controlleradmin
+                                      .refreshlistsection(tilemenu.titulo);
+                                } else if (tilemenu == sidemenus[6]) {
+                                  controlleradmin.pageview(tilemenu.titulo);
+                                  controlleradmin
+                                      .refreshlistsection(tilemenu.titulo);
+                                } else if (tilemenu == sidemenus[7]) {
+                                  controlleradmin.pageview(tilemenu.titulo);
+                                  controlleradmin
+                                      .refreshlistsection(tilemenu.titulo);
+                                } else if (tilemenu == sidemenus[8]) {
+                                  controlleradmin.pageview(tilemenu.titulo);
+                                  controlleradmin
+                                      .refreshlistsection(tilemenu.titulo);
+                                } else if (tilemenu == sidemenus[9]) {
+                                  controlleradmin.pageview(tilemenu.titulo);
+                                  controlleradmin
+                                      .refreshlistsection(tilemenu.titulo);
+                                } else if (tilemenu == sidemenus[10]) {
+                                  controlleradmin.pageview(tilemenu.titulo);
+                                  controlleradmin
+                                      .refreshlistsection(tilemenu.titulo);
+                                } else if (tilemenu == sidemenus[11]) {
+                                  controlleradmin.pageview(tilemenu.titulo);
+                                  controlleradmin
+                                      .refreshlistsection(tilemenu.titulo);
+                                } else if (tilemenu == sidemenus[12]) {
+                                  controlleradmin.pageview(tilemenu.titulo);
+                                  controlleradmin
+                                      .refreshlistsection(tilemenu.titulo);
+                                } else if (tilemenu == sidemenus[13]) {
+                                  controlleradmin.pageview(tilemenu.titulo);
+                                  controlleradmin
+                                      .refreshlistsection(tilemenu.titulo);
+                                }
+                              });
+                            },
+                            titulo: tilemenu.titulo,
+                          ),
+                        )
+                      ],
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const VistadelosSection(),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    decoration: BoxDecoration(
+                      color: Colors.greenAccent,
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                  ],
-                ),
+                    width: double.infinity,
+                    child: const FormSection(
+                      id: '',
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: const VistadelosSection(),
+                  ),
+                ],
               ),
       ),
     );

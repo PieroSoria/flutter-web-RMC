@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:rmc_bussiness/connection/function/consultform.dart';
 
@@ -51,7 +49,7 @@ class _FormContactoState extends State<FormContacto> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     debugPrint(width.toString());
-    return Container(
+    return SizedBox(
       width: width > 1000 ? 900 : null,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),

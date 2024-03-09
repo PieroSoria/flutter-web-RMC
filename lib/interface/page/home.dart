@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SectionBanners(width: width, listaimagen: [],),
+          SectionBanners(width: width, listaimagen: const [],),
           const ProductosDestacados(
             titulo: "Impresoras Destacadas",
             categoria: "Impresora",

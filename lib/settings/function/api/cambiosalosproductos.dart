@@ -54,25 +54,17 @@ class ApiProductoAdmin {
     }
   }
 
-  Future<bool> actualizarproductoporid(Products data) async {
+  Future<bool> actualizarproductoporid(Map<String, dynamic> data) async {
     final client = http.Client();
-
     try {
       var url = Uri.https(HostingRMC.hostingprueba, URLSDirection.urlprueba2);
-      final datares = json.encode(data);
-      var response = await client.post(url, body: datares);
+      final result = json.encode(data);
+      var response = await client.post(url, body: result);
       if (response.statusCode == 200) {
-        debugPrint("Dato: ${response.body}");
-        final Map<String, dynamic> responsejson = json.decode(response.body);
-        if (responsejson['mensaje'] == 'Producto actualizado exitosamente') {
-          debugPrint("Mensaje de éxito: ${responsejson['mensaje']}");
-          return true;
-        } else {
-          debugPrint("Error: ${responsejson['mensaje']}");
-          return false;
-        }
-      } else {
         debugPrint("Datos capturados: ${response.body}");
+        return true;
+      } else {
+        debugPrint("Error del servidor: ${response.statusCode}");
         return false;
       }
     } catch (e) {

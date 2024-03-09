@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:rmc_bussiness/connection/api/section/getsection.dart';
 import 'package:rmc_bussiness/controller/data/controller_products.dart';

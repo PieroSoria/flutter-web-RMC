@@ -19,6 +19,7 @@ class SettingsAdmin extends GetxController {
   RxString sectionmodeide = ''.obs;
   RxString pageview = 'Soluciones'.obs;
   RxList<Section> sectionactual = <Section>[].obs;
+  RxList<Products> listaproductos = <Products>[].obs;
   RxInt index = 0.obs;
   Rx<Uint8List?> imagecapturada = Rx<Uint8List?>(null);
   Rx<Uint8List?> imagecapturada2 = Rx<Uint8List?>(null);
@@ -84,9 +85,9 @@ class SettingsAdmin extends GetxController {
     }
   }
 
-  Future<List<Products>> getdataproducts() async {
+  Future<void> getdataproducts() async {
     final data = await getproductos.mostrarlosproductos();
-    return data;
+    listaproductos.assignAll(data);
   }
 
   Future<void> deleteproductbyid(String id) async {
@@ -109,7 +110,7 @@ class SettingsAdmin extends GetxController {
     }
   }
 
-  Future<void> actualizarproductoporid(Products data) async {
+  Future<void> actualizarproductoporid(Map<String, dynamic> data) async {
     final result = await getproductos.actualizarproductoporid(data);
     if (result) {
       imagecapturada2(null);

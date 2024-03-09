@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import 'package:rmc_bussiness/settings/function/controller/admin_controller.dart';
@@ -142,7 +143,7 @@ class _VistadelosSectionState extends State<VistadelosSection> {
                               ),
                             ),
                           ),
-                          InkWell(
+                          GestureDetector(
                             onTap: () {
                               controlleradmin.index(index);
                               controlleradmin.sectionmodeide("Container");

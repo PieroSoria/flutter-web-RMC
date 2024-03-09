@@ -44,7 +44,13 @@ class _ProductosScreenState extends State<ProductosScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Productos Obtenidos"),
+                        const Text(
+                          "Productos Obtenidos",
+                          style: TextStyle(
+                            fontFamily: "CenturyGothic",
+                            fontSize: 30,
+                          ),
+                        ),
                         Expanded(
                           child: FutureBuilder(
                             future: controller.getdataproducts(),
@@ -83,4 +89,3 @@ class _ProductosScreenState extends State<ProductosScreen> {
     );
   }
 }
-

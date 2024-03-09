@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rmc_bussiness/settings/function/controller/admin_controller.dart';
 import 'package:rmc_bussiness/settings/function/page/productos/datoproducts.dart';
+import 'package:rmc_bussiness/settings/function/widget/lista_de_opcion_desplegable.dart';
 import 'package:rmc_bussiness/settings/routes/routes.dart';
 
 class Agregarproductos extends StatefulWidget {
@@ -24,8 +25,23 @@ class _AgregarproductosState extends State<Agregarproductos> {
   final vendidos = TextEditingController();
   final urlpdf = TextEditingController();
   final urlyoutube = TextEditingController();
+
+  List<String>? listadedescripcion = [];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.onDelete();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       decoration: const BoxDecoration(
@@ -35,23 +51,58 @@ class _AgregarproductosState extends State<Agregarproductos> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              "Agregar un Nuevo Producto",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 30,
-                fontFamily: "CenturyGothic",
-              ),
-            ),
+            width < 600
+                ? Card(
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Get.toNamed(Routes.admindesktop);
+                          },
+                          icon: const Icon(Icons.arrow_back),
+                        ),
+                        const Text(
+                          "Agregar un Nuevo Producto",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: "CenturyGothic",
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : const Text(
+                    "Agregar un Nuevo Producto",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontFamily: "CenturyGothic",
+                    ),
+                  ),
             InputformProducts(
               controller: nombre,
               width: 400,
               titulo: 'nombre del producto',
             ),
-            InputformProducts(
-              controller: description,
+            SizedBox(
               width: 400,
-              titulo: 'descripcion del producto',
+              child: ListaDedescripcion(
+                titulo: 'Agrega Descripcion',
+                press: () {
+                  setState(() {
+                    listadedescripcion!.add(description.text);
+                    description.clear();
+                  });
+                },
+                dropmenuitem: listadedescripcion,
+                controller: description,
+                pressedit: (int index) {
+                  setState(() {
+                    listadedescripcion!.removeAt(index);
+                  });
+                },
+              ),
             ),
             InputformProducts(
               controller: categoria,
@@ -122,23 +173,25 @@ class _AgregarproductosState extends State<Agregarproductos> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ElevatedButton(
-                    onPressed: () async {
-                      Get.toNamed(Routes.mostrarproducto);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 20,
-                        horizontal: 20,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                    ),
-                    child: const Text("Mostrar productos"),
-                  ),
+                  width < 600
+                      ? ElevatedButton(
+                          onPressed: () async {
+                            Get.toNamed(Routes.mostrarproducto);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 20,
+                              horizontal: 20,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                          child: const Text("Mostrar productos"),
+                        )
+                      : const SizedBox.shrink(),
                   ElevatedButton(
                     onPressed: () async {
                       final String? imageUrl = await controller.getproductos
@@ -147,7 +200,7 @@ class _AgregarproductosState extends State<Agregarproductos> {
                               nombreimagen: controller.nombredelaimagen.value);
                       final data = {
                         'nombre': nombre.text,
-                        'description': description.text,
+                        'description': listadedescripcion!.join('/').toString(),
                         'comentario': comentarios.text,
                         'categoria': categoria.text,
                         'subcategoria': subcategoria.text,
@@ -156,7 +209,8 @@ class _AgregarproductosState extends State<Agregarproductos> {
                         'puntaje': puntaje.text,
                         'vendidos': vendidos.text,
                         'urlpdf': urlpdf.text,
-                        'urlimagen': imageUrl ?? "icons2/galeria-de-imagenes.png",
+                        'urlimagen':
+                            imageUrl ?? "icons2/galeria-de-imagenes.png",
                         'urlyoutube': urlyoutube.text,
                       };
                       await controller.agregarnuevoproducto(data);

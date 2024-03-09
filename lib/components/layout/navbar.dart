@@ -25,6 +25,13 @@ class Navbar extends StatefulWidget {
 class _NavbarState extends State<Navbar> {
   final controllerwidget = Get.put(WidgetController());
   Tileasset selectMenu = sideMenustile.first;
+
+  @override
+  void dispose() {
+    controllerwidget.onDelete();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return widget.columna

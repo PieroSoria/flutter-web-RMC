@@ -58,6 +58,8 @@ class _IndexState extends State<Index> {
                 "RMC Solutions & Business",
                 style: TextStyle(
                   color: Colors.white,
+                  fontFamily: "CenturyGothic",
+                  fontSize: 30,
                 ),
               )
             : Navbar(

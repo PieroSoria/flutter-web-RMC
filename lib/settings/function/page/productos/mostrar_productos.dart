@@ -19,6 +19,15 @@ class _MostrarProductosState extends State<MostrarProductos> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Lista de Productos",
+          style: TextStyle(
+            fontFamily: "CenturyGothic",
+            fontSize: 20,
+          ),
+        ),
+      ),
       body: Container(
         padding: const EdgeInsets.symmetric(
           vertical: 20,
@@ -49,18 +58,27 @@ class _MostrarProductosState extends State<MostrarProductos> {
                         ? Datoproductos(
                             data: controller.listaproductos[index],
                           )
-                        : ListTile(
-                            title:
-                                Text(controller.listaproductos[index].nombre),
-                            subtitle: Text(
-                                controller.listaproductos[index].categoria),
-                            onTap: () {
-                              Get.to(
-                                () => DetalleProductoId(
-                                  data: controller.listaproductos[index],
-                                ),
-                              );
-                            },
+                        : Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              side: const BorderSide(
+                                width: 2,
+                                color: Colors.black,
+                              ),
+                            ),
+                            child: ListTile(
+                              title:
+                                  Text(controller.listaproductos[index].nombre),
+                              subtitle: Text(
+                                  controller.listaproductos[index].categoria),
+                              onTap: () {
+                                Get.to(
+                                  () => DetalleProductoId(
+                                    data: controller.listaproductos[index],
+                                  ),
+                                );
+                              },
+                            ),
                           );
                   },
                 ),

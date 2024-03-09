@@ -68,7 +68,7 @@ class _DetalleProductoIdState extends State<DetalleProductoId> {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
-                child: imagenurldata != "icons2/galeria-de-imagenes.png"
+                child: imagenurldata != "assets/icons2/galeria-de-imagenes.png"
                     ? Image.network(
                         imagenurldata!,
                         width: 300,
@@ -90,7 +90,7 @@ class _DetalleProductoIdState extends State<DetalleProductoId> {
                                             controller.imagecapturada2.value!)
                                         as ImageProvider
                                     : const AssetImage(
-                                        'icons2/galeria-de-imagenes.png'),
+                                        'assets/icons2/galeria-de-imagenes.png'),
                                 fit: BoxFit.fill,
                               ),
                             ),

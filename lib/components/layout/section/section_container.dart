@@ -11,8 +11,7 @@ class SectionContainer extends StatefulWidget {
   final bool reves;
   final Color background;
   final Products product;
-  final double ancho;
-  final double alto;
+
   final VoidCallback funcion;
   const SectionContainer({
     super.key,
@@ -23,8 +22,6 @@ class SectionContainer extends StatefulWidget {
     required this.background,
     required this.product,
     required this.funcion,
-    required this.ancho,
-    required this.alto,
   });
 
   @override
@@ -52,8 +49,6 @@ class _SectionContainerState extends State<SectionContainer> {
       ),
       child: Center(
         child: SizedBox(
-          width: widget.ancho,
-          height: widget.alto,
           child: Column(
             children: [
               Padding(

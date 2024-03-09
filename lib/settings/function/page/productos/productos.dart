@@ -26,7 +26,7 @@ class _ProductosScreenState extends State<ProductosScreen> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('image/fondo.png'),
+            image: AssetImage('assets/image/fondo.png'),
             fit: BoxFit.fill,
           ),
         ),

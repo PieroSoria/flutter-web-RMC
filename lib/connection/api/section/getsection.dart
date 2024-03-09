@@ -17,7 +17,9 @@ class GetSectionApi {
         {'pageview': pageview},
       );
 
-      var response = await client.get(url);
+      final response = await client.get(url);
+
+      debugPrint("$url");
 
       if (response.statusCode == 200) {
         List<dynamic> jsonResponse = json.decode(response.body);

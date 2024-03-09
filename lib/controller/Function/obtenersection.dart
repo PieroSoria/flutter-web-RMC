@@ -27,7 +27,7 @@ class _ObtenerSectionPageState extends State<ObtenerSectionPage> {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (controllerwidget.futuresection.isEmpty) {
+        } else if (snapshot.data!.isEmpty) {
           return const Center(
             child: Text(
               "NO SE ENCONTRO NADA",
@@ -39,7 +39,8 @@ class _ObtenerSectionPageState extends State<ObtenerSectionPage> {
             ),
           );
         } else {
-          final section = controllerwidget.futuresection;
+          final section = snapshot.data!;
+
           return ListView.builder(
             itemCount: section.length,
             itemBuilder: (context, index) {

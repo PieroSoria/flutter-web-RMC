@@ -55,12 +55,12 @@ class GetDataProduct {
     try {
       var response = await client.get(
         Uri.http(HostingRMC.hostingprueba, URLSDirection.urlprueba,
-            {'nombre': nombreproduct}),
+            {'id': nombreproduct}),
       );
 
       if (response.statusCode == 200) {
         var decodedResponse = json.decode(response.body);
-
+        debugPrint(decodedResponse);
         if (decodedResponse is Map) {
           return Products(
             id: decodedResponse['id'],

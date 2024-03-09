@@ -30,6 +30,7 @@ class _AgregarproductosState extends State<Agregarproductos> {
 
   @override
   void initState() {
+    controller.onStart();
     super.initState();
   }
 
@@ -163,7 +164,8 @@ class _AgregarproductosState extends State<Agregarproductos> {
                       image: controller.imagecapturada.value != null
                           ? MemoryImage(controller.imagecapturada.value!)
                               as ImageProvider
-                          : const AssetImage("icons2/galeria-de-imagenes.png"),
+                          : const AssetImage(
+                              "assets/icons2/galeria-de-imagenes.png"),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -210,7 +212,7 @@ class _AgregarproductosState extends State<Agregarproductos> {
                         'vendidos': vendidos.text,
                         'urlpdf': urlpdf.text,
                         'urlimagen':
-                            imageUrl ?? "icons2/galeria-de-imagenes.png",
+                            imageUrl ?? "assets/icons2/galeria-de-imagenes.png",
                         'urlyoutube': urlyoutube.text,
                       };
                       await controller.agregarnuevoproducto(data);

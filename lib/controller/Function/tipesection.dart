@@ -128,7 +128,7 @@ class _TipeSectionState extends State<TipeSection> {
           );
         } else if (sections.section == "ImagenSection") {
           return SectionBanners(
-            listaimagen: sections.imagensecion,
+            listaimagen: sections.imagensecion.toString().split(','),
           );
         } else {
           return const Center();

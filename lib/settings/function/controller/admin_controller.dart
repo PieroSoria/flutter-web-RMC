@@ -18,7 +18,7 @@ class SettingsAdmin extends GetxController {
   final getproductos = ApiProductoAdmin();
   RxBool ini = false.obs;
   RxString sectionmodeide = ''.obs;
-  RxString pageview = 'Soluciones'.obs;
+  RxString pageview = 'Home'.obs;
   RxList<Section> sectionactual = <Section>[].obs;
   RxList<Products> listaproductos = <Products>[].obs;
   RxInt index = 0.obs;

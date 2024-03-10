@@ -31,7 +31,6 @@ class _VistadelosSectionState extends State<VistadelosSection> {
     controlleradmin.refreshlistsection(controlleradmin.pageview.value);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,6 +102,8 @@ class _VistadelosSectionState extends State<VistadelosSection> {
                                   controlleradmin.sectionactual[index].id
                                       .toString(),
                                   textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
                                   style: const TextStyle(
                                     fontFamily: "CenturyGothic",
                                     fontSize: 18,

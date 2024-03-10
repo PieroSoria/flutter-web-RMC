@@ -101,7 +101,6 @@ class ApiProductoAdmin {
       {required List<MultiImagen> multiImagenes}) async {
     final client = http.Client();
     List<String> urls = [];
-
     try {
       var url = Uri.https(HostingRMC.hostingprueba, URLSDirection.enviarimagen);
 
@@ -120,16 +119,12 @@ class ApiProductoAdmin {
       if (response.statusCode == 200) {
         final String responseString = await utf8.decodeStream(response.stream);
         debugPrint("Dato capturado: $responseString");
-        final List<dynamic> jsonResponse = json.decode(responseString);
+
+        final List<String> jsonResponse =
+            json.decode(responseString).cast<String>();
 
         for (var item in jsonResponse) {
-          if (item['url'] != null) {
-            urls.add(item['url']);
-          } else {
-            debugPrint("Error: La URL de la imagen es nula");
-            // Puedes manejar este caso como desees, por ejemplo, agregar una URL predeterminada
-            // urls.add('URL_POR_DEFECTO');
-          }
+          urls.add(item);
         }
       } else {
         final String errorString = await utf8.decodeStream(response.stream);

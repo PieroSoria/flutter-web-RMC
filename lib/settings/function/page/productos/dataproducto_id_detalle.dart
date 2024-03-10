@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rmc_bussiness/interface/model/products.dart';
 import 'package:rmc_bussiness/settings/function/controller/admin_controller.dart';
 import 'package:rmc_bussiness/settings/function/page/productos/datoproducts.dart';
+import 'package:rmc_bussiness/settings/function/widget/multi_imagen_network.dart';
 
 class DetalleProductoId extends StatefulWidget {
   final Products? data;
@@ -68,35 +69,16 @@ class _DetalleProductoIdState extends State<DetalleProductoId> {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
-                child: imagenurldata != "assets/icons2/galeria-de-imagenes.png"
-                    ? Image.network(
-                        imagenurldata!,
-                        width: 300,
-                        height: 300,
-                        fit: BoxFit.fill,
-                      )
-                    : GestureDetector(
-                        onTap: () {
-                          controller.capturarimagen2();
-                        },
-                        child: Obx(
-                          () => Container(
-                            width: 300,
-                            height: 300,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: controller.imagecapturada2.value != null
-                                    ? MemoryImage(
-                                            controller.imagecapturada2.value!)
-                                        as ImageProvider
-                                    : const AssetImage(
-                                        'assets/icons2/galeria-de-imagenes.png'),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                child: MultiImagenes2(
+                  press: () {
+                    setState(() {
+                      controller.capturarimagen2();
+                      controller.changeitems2();
+                    });
+                  },
+                  string: true,
+                  itemsnew: controller.items2,
+                ),
               ),
               InputformProducts(
                 controller: nombre,
@@ -161,7 +143,8 @@ class _DetalleProductoIdState extends State<DetalleProductoId> {
                       if (controller.imagecapturada2.value != null &&
                           controller.nombredelaimagen2.value != "") {
                         final imageUrl = await controller.getproductos
-                            .subirMultiplesImagenesProductos(multiImagenes: controller.listadeimagenes2);
+                            .subirMultiplesImagenesProductos(
+                                multiImagenes: controller.listadeimagenes2);
                         final data = {
                           'id': widget.data!.id,
                           'nombre': nombre.text,

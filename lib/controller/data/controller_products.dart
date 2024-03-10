@@ -8,6 +8,8 @@ class ControllerProducts extends GetxController {
   RxList<Products> productcon = <Products>[].obs;
 
   Rx<Products?> productoseleccionado = Rx<Products?>(null);
+  RxString nombreproducto = ''.obs;
+  RxList<String> listadedescripcion = <String>[].obs;
 
   Future<void> getDataProductnow() async {
     final data = await conexiondatabase.getProducts();
@@ -57,7 +59,8 @@ class ControllerProducts extends GetxController {
         );
 
         productoseleccionado.value = product;
-
+        listadedescripcion.assignAll(product.description.toString().split('/'));
+        nombreproducto(product.nombre);
         return product;
       }
     }

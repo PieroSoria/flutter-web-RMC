@@ -25,13 +25,16 @@ class _HomeState extends State<Home> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SectionBanners(width: width, listaimagen: const [],),
+          SectionBanners(
+            width: width,
+            listaimagen: const [],
+          ),
           const ProductosDestacados(
             titulo: "Impresoras Destacadas",
             categoria: "Impresora",
             scroll: true,
-            sizewidth: 1000,
-            sizeheigth: 500,
+            sizewidth: 1200,
+            sizeheigth: 700,
           ),
           Container(
             decoration: BoxDecoration(
@@ -109,7 +112,7 @@ class _HomeState extends State<Home> {
             categoria: 'productos',
             scroll: false,
             sizewidth: 1200,
-            sizeheigth: 850,
+            sizeheigth: 700,
           ),
           const SectionMasVendidos(
             categoria: 'productos',
@@ -121,5 +124,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-

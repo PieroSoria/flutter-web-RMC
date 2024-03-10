@@ -43,6 +43,10 @@ class _PromociondeproductState extends State<Promociondeproduct> {
                   return const Center(
                     child: Text("Cargando"),
                   );
+                } else if (snapshot.data!.isEmpty) {
+                  return const Center(
+                    child: Text("No se encontraron los Datos"),
+                  );
                 } else {
                   return ListView.builder(
                     itemCount:

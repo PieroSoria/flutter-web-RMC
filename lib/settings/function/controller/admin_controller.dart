@@ -22,7 +22,9 @@ class SettingsAdmin extends GetxController {
   RxList<Products> listaproductos = <Products>[].obs;
   RxInt index = 0.obs;
   Rx<Uint8List?> imagecapturada = Rx<Uint8List?>(null);
+  RxList<Uint8List> listadeimagenes = <Uint8List>[].obs;
   Rx<Uint8List?> imagecapturada2 = Rx<Uint8List?>(null);
+  RxList<Uint8List> listadeimagenes2 = <Uint8List>[].obs;
 
   RxString nombredelaimagen = ''.obs;
   RxString nombredelaimagen2 = ''.obs;

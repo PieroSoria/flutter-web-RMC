@@ -45,11 +45,11 @@ class _IndexState extends State<Index> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    debugPrint(width.toString());
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         key: _scaffoldKey,
         backgroundColor: const Color.fromARGB(255, 0, 112, 192),
         iconTheme: const IconThemeData(color: Colors.white),

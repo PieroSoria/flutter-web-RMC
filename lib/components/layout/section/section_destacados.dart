@@ -83,16 +83,23 @@ class _ProductosDestacadosState extends State<ProductosDestacados> {
                           posibotom: 20,
                           paddingcontainer:
                               const EdgeInsets.symmetric(horizontal: 5),
-                          countitem: 3,
+                          countitem: width > 960
+                              ? 4
+                              : width > 600
+                                  ? 3
+                                  : 1,
                           usobuton: true,
-                     
                           data: data,
                         );
                       } else {
                         return GridView.builder(
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: width > 960 ? 4 : 3,
+                            crossAxisCount: width > 960
+                                ? 4
+                                : width > 600
+                                    ? 3
+                                    : 1,
                             mainAxisSpacing: 30,
                             crossAxisSpacing: 16,
                             mainAxisExtent: 350,

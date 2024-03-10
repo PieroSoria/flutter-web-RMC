@@ -75,7 +75,15 @@ class _SectionBeneficiosState extends State<SectionBeneficios> {
                             urlimagen: widget.products.urlimagen,
                             nombreproduct: widget.products.nombre,
                             namebutton: 'Leer mas',
-                            funcion: widget.funcion,
+                            funcion: () async {
+                                bool resul = await controllerproduct
+                                    .saveidbyproduct(widget.products);
+                                if (resul) {
+                                  Get.toNamed(
+                                    '/Cardproduct',
+                                  );
+                                }
+                              },
                             categoria: widget.products.categoria,
                           ),
                         ),
@@ -139,7 +147,15 @@ class _SectionBeneficiosState extends State<SectionBeneficios> {
                             urlimagen: widget.products.urlimagen,
                             nombreproduct: widget.products.nombre,
                             namebutton: 'leer mas',
-                            funcion: widget.funcion,
+                            funcion: () async {
+                                bool resul = await controllerproduct
+                                    .saveidbyproduct(widget.products);
+                                if (resul) {
+                                  Get.toNamed(
+                                    '/Cardproduct',
+                                  );
+                                }
+                              },
                             categoria: widget.products.categoria,
                           ),
                         ),

@@ -63,7 +63,6 @@ class _TipeSectionState extends State<TipeSection> {
                 );
               }
             },
-            
           );
         } else if (sections.section == "Promocion") {
           return SectiondePromocion(
@@ -77,8 +76,8 @@ class _TipeSectionState extends State<TipeSection> {
             titulo: sections.titulo,
             categoria: sections.producto!.categoria,
             scroll: sections.useScroll == "true" ? true : false,
-            sizewidth: double.parse(sections.ancho),
-            sizeheigth: double.parse(sections.alto),
+            sizewidth: 1200,
+            sizeheigth: 700,
           );
         } else if (sections.section == "Mas Vendidos") {
           return SectionMasVendidos(

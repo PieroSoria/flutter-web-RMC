@@ -49,7 +49,7 @@ class _NavbarState extends State<Navbar> {
                           controllerwidget.indexwidget(0);
                           Scaffold.of(context).closeEndDrawer();
                         },
-                        titulo: 'RMCBussines',
+                        titulo: 'RMC Solutions & Bussines',
                         ini: const Color.fromARGB(255, 255, 163, 52),
                         fin: const Color.fromARGB(255, 0, 112, 192),
                         fontsize: 20,

@@ -100,7 +100,15 @@ class _SectionContainerState extends State<SectionContainer> {
                               urlimagen: widget.product.urlimagen,
                               nombreproduct: widget.product.nombre,
                               namebutton: "Leer Mas",
-                              funcion: widget.funcion,
+                              funcion: () async {
+                                bool resul = await controllerproduct
+                                    .saveidbyproduct(widget.product);
+                                if (resul) {
+                                  Get.toNamed(
+                                    '/Cardproduct',
+                                  );
+                                }
+                              },
                               categoria: widget.product.categoria,
                             ),
                           ),

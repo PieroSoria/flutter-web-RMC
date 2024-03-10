@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:rmc_bussiness/connection/hosting/hosting_bussiens.dart';
 import 'package:rmc_bussiness/connection/urls/urls_direction.dart';
 import 'package:rmc_bussiness/interface/model/products.dart';
+import 'package:rmc_bussiness/settings/function/model/multi_imagenes_model.dart';
 
 class ApiProductoAdmin {
   Future<bool> agregarnuevoproducto(Map<String, dynamic> data) async {
@@ -97,35 +97,50 @@ class ApiProductoAdmin {
     }
   }
 
-  Future<String?> subirimagenproducto({
-    required Uint8List archivo,
-    required String nombreimagen,
-  }) async {
+  Future<List<String>?> subirMultiplesImagenesProductos(
+      {required List<MultiImagen> multiImagenes}) async {
     final client = http.Client();
+    List<String> urls = [];
+
     try {
       var url = Uri.https(HostingRMC.hostingprueba, URLSDirection.enviarimagen);
 
-      final request = http.MultipartRequest('POST', url)
-        ..files.add(http.MultipartFile.fromBytes(
-          'file',
-          archivo,
-          filename: nombreimagen,
-        ));
-      debugPrint("enviar: $request");
+      final List<http.MultipartFile> files = multiImagenes.map((imagen) {
+        return http.MultipartFile.fromBytes(
+          'files[]',
+          imagen.imagen,
+          filename: imagen.nombre,
+        );
+      }).toList();
+
+      final request = http.MultipartRequest('POST', url)..files.addAll(files);
+
       var response = await client.send(request);
+
       if (response.statusCode == 200) {
         final String responseString = await utf8.decodeStream(response.stream);
         debugPrint("Dato capturado: $responseString");
-        final Map<String, dynamic> jsonResponse = json.decode(responseString);
-        final String imageUrl = jsonResponse['url'];
-        return imageUrl;
+        final List<dynamic> jsonResponse = json.decode(responseString);
+
+        for (var item in jsonResponse) {
+          if (item['url'] != null) {
+            urls.add(item['url']);
+          } else {
+            debugPrint("Error: La URL de la imagen es nula");
+            // Puedes manejar este caso como desees, por ejemplo, agregar una URL predeterminada
+            // urls.add('URL_POR_DEFECTO');
+          }
+        }
       } else {
         final String errorString = await utf8.decodeStream(response.stream);
         debugPrint("Error: $errorString");
-
+        // Manejar el error según tus necesidades
         return null;
       }
+
+      return urls;
     } catch (e) {
+      debugPrint("Error al enviar: $e");
       return null;
     } finally {
       client.close();

@@ -39,8 +39,6 @@ class _SectionContainerState extends State<SectionContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: 600,
       padding: const EdgeInsets.symmetric(vertical: 50),
       margin: const EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(

@@ -96,7 +96,7 @@ class GetSectionApi {
     }
   }
 
-  Future<bool> actualizaritemsection(Section section) async {
+  Future<bool> actualizaritemsection(Map<String, dynamic> section) async {
     final client = http.Client();
 
     try {

@@ -160,11 +160,8 @@ class _DetalleProductoIdState extends State<DetalleProductoId> {
                     onPressed: () async {
                       if (controller.imagecapturada2.value != null &&
                           controller.nombredelaimagen2.value != "") {
-                        final String? imageUrl = await controller.getproductos
-                            .subirimagenproducto(
-                                archivo: controller.imagecapturada2.value!,
-                                nombreimagen:
-                                    controller.nombredelaimagen2.value);
+                        final imageUrl = await controller.getproductos
+                            .subirMultiplesImagenesProductos(multiImagenes: controller.listadeimagenes2);
                         final data = {
                           'id': widget.data!.id,
                           'nombre': nombre.text,

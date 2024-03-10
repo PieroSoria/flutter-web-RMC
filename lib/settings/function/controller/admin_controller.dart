@@ -8,6 +8,7 @@ import 'package:rmc_bussiness/connection/hosting/hosting_bussiens.dart';
 import 'package:rmc_bussiness/connection/urls/urls_direction.dart';
 import 'package:rmc_bussiness/interface/model/products.dart';
 import 'package:rmc_bussiness/settings/function/api/cambiosalosproductos.dart';
+import 'package:rmc_bussiness/settings/function/model/multi_imagenes_model.dart';
 
 import '../../../connection/api/section/getsection.dart';
 import '../../../interface/model/section.dart';
@@ -22,9 +23,23 @@ class SettingsAdmin extends GetxController {
   RxList<Products> listaproductos = <Products>[].obs;
   RxInt index = 0.obs;
   Rx<Uint8List?> imagecapturada = Rx<Uint8List?>(null);
-  RxList<Uint8List> listadeimagenes = <Uint8List>[].obs;
+  RxList<MultiImagen> listadeimagenes = <MultiImagen>[].obs;
+  RxList<Widget> items = <Widget>[].obs;
   Rx<Uint8List?> imagecapturada2 = Rx<Uint8List?>(null);
-  RxList<Uint8List> listadeimagenes2 = <Uint8List>[].obs;
+  RxList<MultiImagen> listadeimagenes2 = <MultiImagen>[].obs;
+  RxList<Widget> items2 = <Widget>[].obs;
+
+  void changeitems() {
+    items.assignAll(listadeimagenes
+        .map((element) => Image.memory(element.imagen))
+        .toList());
+  }
+
+  void changeitems2() {
+    items2.assignAll(listadeimagenes2
+        .map((element) => Image.memory(element.imagen))
+        .toList());
+  }
 
   RxString nombredelaimagen = ''.obs;
   RxString nombredelaimagen2 = ''.obs;
@@ -76,15 +91,17 @@ class SettingsAdmin extends GetxController {
     }
   }
 
-  Future<void> actualizarsection(Section section) async {
+  Future<bool> actualizarsection(Map<String, dynamic> section) async {
     bool result = await getsection.actualizaritemsection(section);
     if (result) {
-      int index = sectionactual.indexWhere((s) => s.id == section.id);
+      int index = sectionactual.indexWhere((s) => s.id == section['id']);
       if (index != -1) {
-        sectionactual[index] = section;
+        sectionactual[index] = Section.fromJson(section);
         sectionactual.refresh();
       }
+      return true;
     }
+    return false;
   }
 
   Future<void> getdataproducts() async {
@@ -125,31 +142,37 @@ class SettingsAdmin extends GetxController {
 
   Future<void> capturarimagen() async {
     final imagepicker = ImagePicker();
-    final XFile? result =
-        await imagepicker.pickImage(source: ImageSource.gallery);
+    final List<XFile> results = await imagepicker.pickMultiImage();
 
-    if (result != null) {
-      debugPrint("data: ${result.name}");
-      final archivo = await result.readAsBytes();
-      imagecapturada(archivo);
-      nombredelaimagen(result.name);
+    if (results.isNotEmpty) {
+      for (final result in results) {
+        final archivo = await result.readAsBytes();
+        listadeimagenes
+            .add(MultiImagen(nombre: result.name.toString(), imagen: archivo));
+        imagecapturada(archivo);
+
+        nombredelaimagen(result.name);
+      }
     } else {
-      debugPrint('Selección de imagen cancelada.');
+      debugPrint('Selección de imágenes cancelada.');
     }
   }
 
   Future<void> capturarimagen2() async {
     final imagepicker = ImagePicker();
-    final XFile? result =
-        await imagepicker.pickImage(source: ImageSource.gallery);
+    final List<XFile> results = await imagepicker.pickMultiImage();
 
-    if (result != null) {
-      debugPrint("data: ${result.name}");
-      final archivo = await result.readAsBytes();
-      imagecapturada2(archivo);
-      nombredelaimagen2(result.name);
+    if (results.isNotEmpty) {
+      for (final result in results) {
+        debugPrint("data: ${result.name}");
+        final archivo = await result.readAsBytes();
+        listadeimagenes2
+            .add(MultiImagen(nombre: result.name.toString(), imagen: archivo));
+        imagecapturada2(archivo);
+        nombredelaimagen2(result.name);
+      }
     } else {
-      debugPrint('Selección de imagen cancelada.');
+      debugPrint('Selección de imágenes cancelada.');
     }
   }
 }

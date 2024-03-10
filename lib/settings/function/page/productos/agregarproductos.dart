@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rmc_bussiness/settings/function/controller/admin_controller.dart';
 import 'package:rmc_bussiness/settings/function/page/productos/datoproducts.dart';
 import 'package:rmc_bussiness/settings/function/widget/lista_de_opcion_desplegable.dart';
+import 'package:rmc_bussiness/settings/function/widget/multi_imagenes.dart';
 import 'package:rmc_bussiness/settings/routes/routes.dart';
 
 class Agregarproductos extends StatefulWidget {
@@ -150,26 +151,15 @@ class _AgregarproductosState extends State<Agregarproductos> {
               width: 400,
               titulo: 'url para el video del producto',
             ),
-            GestureDetector(
-              onTap: () {
-                controller.capturarimagen();
-              },
-              child: Obx(
-                () => Container(
-                  margin: const EdgeInsets.all(10),
-                  width: 200,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: controller.imagecapturada.value != null
-                          ? MemoryImage(controller.imagecapturada.value!)
-                              as ImageProvider
-                          : const AssetImage(
-                              "assets/icons2/galeria-de-imagenes.png"),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
+            SizedBox(
+              width: 500,
+              height: 600,
+              child: MultiImagenes(
+                press: () async {
+                  await controller.capturarimagen();
+                  controller.changeitems();
+                },
+                items: controller.items,
               ),
             ),
             Padding(
@@ -196,10 +186,9 @@ class _AgregarproductosState extends State<Agregarproductos> {
                       : const SizedBox.shrink(),
                   ElevatedButton(
                     onPressed: () async {
-                      final String? imageUrl = await controller.getproductos
-                          .subirimagenproducto(
-                              archivo: controller.imagecapturada.value!,
-                              nombreimagen: controller.nombredelaimagen.value);
+                      final imageUrl = await controller.getproductos
+                          .subirMultiplesImagenesProductos(
+                              multiImagenes: controller.listadeimagenes);
                       final data = {
                         'nombre': nombre.text,
                         'description': listadedescripcion!.join('/').toString(),
@@ -211,8 +200,8 @@ class _AgregarproductosState extends State<Agregarproductos> {
                         'puntaje': puntaje.text,
                         'vendidos': vendidos.text,
                         'urlpdf': urlpdf.text,
-                        'urlimagen':
-                            imageUrl ?? "assets/icons2/galeria-de-imagenes.png",
+                        'urlimagen': imageUrl?.join(',').toString() ??
+                            "assets/icons2/galeria-de-imagenes.png",
                         'urlyoutube': urlyoutube.text,
                       };
                       await controller.agregarnuevoproducto(data);
@@ -228,6 +217,7 @@ class _AgregarproductosState extends State<Agregarproductos> {
                         vendidos.text = "";
                         urlpdf.text = "";
                         controller.imagecapturada(null);
+                        controller.listadeimagenes.clear();
                       });
                     },
                     style: ElevatedButton.styleFrom(

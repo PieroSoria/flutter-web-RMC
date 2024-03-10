@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rmc_bussiness/interface/model/products.dart';
 import 'package:rmc_bussiness/settings/function/controller/admin_controller.dart';
 import 'package:rmc_bussiness/settings/function/widget/lista_de_opcion_desplegable.dart';
+import 'package:rmc_bussiness/settings/function/widget/multi_imagen_network.dart';
 
 class Datoproductos extends StatefulWidget {
   final Products data;
@@ -23,7 +24,7 @@ class _DatoproductosState extends State<Datoproductos> {
   final precioreseller = TextEditingController();
   final puntaje = TextEditingController();
   final vendidos = TextEditingController();
-  String? imagenurldata;
+  List<String> imagenurldata = [];
   final urlpdf = TextEditingController();
   final urlyoutube = TextEditingController();
   List<String>? listadedescripcion = [];
@@ -40,7 +41,7 @@ class _DatoproductosState extends State<Datoproductos> {
     precioreseller.text = widget.data.precioreseller;
     puntaje.text = widget.data.puntaje;
     vendidos.text = widget.data.vendidos;
-    imagenurldata = widget.data.urlimagen;
+    imagenurldata = widget.data.urlimagen.toString().split(',');
     urlyoutube.text = widget.data.urlyoutube;
     super.initState();
   }
@@ -58,7 +59,7 @@ class _DatoproductosState extends State<Datoproductos> {
     precioreseller.clear();
     puntaje.clear();
     vendidos.clear();
-    imagenurldata = '';
+    imagenurldata.clear();
     urlyoutube.clear();
     controller.onDelete();
     super.dispose();
@@ -156,40 +157,34 @@ class _DatoproductosState extends State<Datoproductos> {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                imagenurldata != "icons2/galeria-de-imagenes.png"
-                    ? GestureDetector(
-                        onTap: () {
-                          controller.capturarimagen2();
-                        },
-                        child: Image.network(
-                          imagenurldata!,
-                          width: 300,
-                          height: 300,
-                          fit: BoxFit.fill,
-                        ),
-                      )
-                    : GestureDetector(
-                        onTap: () {
-                          controller.capturarimagen2();
-                        },
-                        child: Obx(
-                          () => Container(
-                            width: 300,
-                            height: 300,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: controller.imagecapturada2.value != null
-                                    ? MemoryImage(
-                                            controller.imagecapturada2.value!)
-                                        as ImageProvider
-                                    : const AssetImage(
-                                        'icons2/galeria-de-imagenes.png'),
-                                fit: BoxFit.fill,
-                              ),
+                SizedBox(
+                  height: 500,
+                  child: MultiImagenes2(
+                    press: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return SizedBox(
+                            height: 600,
+                            child: MultiImagenes2(
+                              press: () {
+                                setState(() {
+                                  controller.capturarimagen2();
+                                  controller.changeitems2();
+                                });
+                              },
+                              string: false,
+                              itemsnew: controller.items2,
                             ),
-                          ),
-                        ),
-                      ),
+                          );
+                        },
+                      );
+                    },
+                    items: imagenurldata,
+                    string: true,
+                    itemsnew: null,
+                  ),
+                ),
                 InputformProducts(
                   controller: urlpdf,
                   width: 400,
@@ -214,12 +209,9 @@ class _DatoproductosState extends State<Datoproductos> {
                         onPressed: () async {
                           if (controller.imagecapturada2.value != null &&
                               controller.nombredelaimagen2.value != "") {
-                            final String? imageUrl = await controller
-                                .getproductos
-                                .subirimagenproducto(
-                                    archivo: controller.imagecapturada2.value!,
-                                    nombreimagen:
-                                        controller.nombredelaimagen2.value);
+                            final imageUrl = await controller.getproductos
+                                .subirMultiplesImagenesProductos(
+                                    multiImagenes: controller.listadeimagenes);
                             final data = {
                               'id': widget.data.id,
                               'nombre': nombre.text,
@@ -233,7 +225,8 @@ class _DatoproductosState extends State<Datoproductos> {
                               'puntaje': puntaje.text,
                               'vendidos': vendidos.text,
                               'urlpdf': urlpdf.text,
-                              'urlimagen': imageUrl ?? widget.data.urlimagen,
+                              'urlimagen': imageUrl?.join('/').toString() ??
+                                  widget.data.urlimagen,
                               'urlyoutube': urlyoutube.text,
                             };
                             await controller.actualizarproductoporid(data);

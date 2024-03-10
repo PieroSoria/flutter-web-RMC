@@ -87,7 +87,7 @@ class _TipeSectionState extends State<TipeSection> {
         } else if (sections.section == "Beneficio") {
           return SectionBeneficios(
             titulo: sections.titulo,
-            datos: sections.producto!.description.split(','),
+            datos: sections.producto!.description..toString().split('/'),
             reves: sections.reves == "true" ? true : false,
             background: Colors.white,
             products: sections.producto!,

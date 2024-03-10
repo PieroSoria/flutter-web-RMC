@@ -10,8 +10,8 @@ class Section {
   Products? producto;
   dynamic ancho;
   dynamic alto;
-  dynamic imagensecion;
   dynamic useScroll;
+  dynamic imagensecion;
   dynamic page;
 
   Section(
@@ -32,17 +32,17 @@ class Section {
     return Section(
         id: json['id'],
         section: json['section'],
-        titulo: json['titulo'] ?? '',
+        titulo: json['titulo'],
         subtitulo: json['subtitulo'],
         contenido: json['contenido'],
-        reves: json['reves'] ?? '',
+        reves: json['reves'],
         producto: json['producto'] != null
             ? Products.fromJson(json['producto'])
             : null,
         ancho: json['ancho'],
         alto: json['alto'],
-        imagensecion: json['imagensection'] ?? '',
         useScroll: json['usescroll'],
+        imagensecion: json['listadebanner'],
         page: json['pageview']);
   }
 }

@@ -38,7 +38,7 @@ class _IndexState extends State<Index> {
   @override
   void initState() {
     selectMenu = sideMenustile.first;
-    _currentwidget = const Home();
+    _currentwidget = const Home(pageview: 'Home',);
     super.initState();
   }
 
@@ -129,7 +129,7 @@ class _IndexState extends State<Index> {
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
         child: Obx(() {
           if (controllerwidget.indexwidget.value == 0) {
-            return const Home();
+            return const Home(pageview: 'Home',);
           } else if (controllerwidget.indexwidget.value == 1) {
             return const SolucionesScreen(
               pageview: 'Soluciones',

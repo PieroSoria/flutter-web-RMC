@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:rmc_bussiness/connection/api/section/getsection.dart';
 import 'package:rmc_bussiness/controller/data/controller_products.dart';
-import 'package:rmc_bussiness/interface/model/section.dart';
 import 'package:rmc_bussiness/settings/function/controller/admin_controller.dart';
 import 'package:rmc_bussiness/settings/function/widget/inputformcustom.dart';
 import 'package:crypto/crypto.dart';
+import 'package:rmc_bussiness/settings/function/widget/lista_de_opcion_desplegable.dart';
 
 class FormSection extends StatefulWidget {
   final String id;
@@ -34,6 +35,7 @@ class _FormSectionState extends State<FormSection> {
     "ImagenSection"
   ];
   List<String> listadepageview = [
+    "Home",
     "Soluciones",
     "Retails",
     "Restaurantes",
@@ -50,15 +52,16 @@ class _FormSectionState extends State<FormSection> {
     "Quiosco",
   ];
   final section = TextEditingController();
-  final titulo = TextEditingController(text: '');
-  final subtitulo = TextEditingController(text: '');
-  final contenido = TextEditingController(text: "");
-  final reves = TextEditingController(text: "");
-  final idproducto = TextEditingController(text: "");
-
-  final ancho = TextEditingController(text: "");
-  final alto = TextEditingController(text: "");
-  final usescroll = TextEditingController(text: "");
+  final titulo = TextEditingController();
+  final subtitulo = TextEditingController();
+  final contenido = TextEditingController();
+  final reves = TextEditingController();
+  final idproducto = TextEditingController();
+  final ancho = TextEditingController();
+  final alto = TextEditingController();
+  final usescroll = TextEditingController();
+  final imagendata = TextEditingController();
+  List<String> listadeimagenes = [];
   String? pageview;
 
   @override
@@ -460,7 +463,16 @@ class _FormSectionState extends State<FormSection> {
                             ),
                           ),
                         ),
-                      )
+                      ),
+                      SizedBox(
+                        width: 400,
+                        child: ListaDedescripcion(
+                          press: () {},
+                          controller: imagendata,
+                          pressedit: (int index) {},
+                          titulo: '',
+                        ),
+                      ),
                     ],
                   );
                 default:
@@ -510,6 +522,7 @@ class _FormSectionState extends State<FormSection> {
       'ancho': ancho.text,
       'alto': alto.text,
       'usescroll': usescroll.text,
+      'listadebanner': listadeimagenes.join('/').toString(),
       'pageview': controlleradmin.pageview.value,
     };
 
@@ -535,20 +548,21 @@ class _FormSectionState extends State<FormSection> {
 
   Future<void> actualizardatos() async {
     final products = await controllerproduct.getproductbyid(idproducto.text);
-    final Section sections = Section(
-      id: widget.id,
-      section: controlleradmin.sectionmodeide.value,
-      titulo: titulo.text,
-      subtitulo: subtitulo.text,
-      contenido: contenido.text,
-      reves: reves.text,
-      producto: products,
-      ancho: ancho.text,
-      alto: alto.text,
-      useScroll: usescroll.text,
-      page: controlleradmin.pageview.value,
-    );
-    bool result = await getsection.actualizaritemsection(sections);
+    Map<String, dynamic> sections = {
+      'id': widget.id,
+      'section': controlleradmin.sectionmodeide.value,
+      'titulo': titulo.text,
+      'subtitulo': subtitulo.text,
+      'contenido': contenido.text,
+      'reves': reves.text,
+      'producto': products.id,
+      'ancho': ancho.text,
+      'alto': alto.text,
+      'usescroll': usescroll.text,
+      'listadebanner': listadeimagenes.join('/').toString(),
+      'pageview': controlleradmin.pageview.value,
+    };
+    bool result = await controlleradmin.actualizarsection(sections);
     if (result) {
       setState(() {
         section.text = '';

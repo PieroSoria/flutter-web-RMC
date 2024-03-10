@@ -211,7 +211,7 @@ class _DatoproductosState extends State<Datoproductos> {
                               controller.nombredelaimagen2.value != "") {
                             final imageUrl = await controller.getproductos
                                 .subirMultiplesImagenesProductos(
-                                    multiImagenes: controller.listadeimagenes);
+                                    multiImagenes: controller.listadeimagenes2);
                             final data = {
                               'id': widget.data.id,
                               'nombre': nombre.text,
@@ -225,7 +225,7 @@ class _DatoproductosState extends State<Datoproductos> {
                               'puntaje': puntaje.text,
                               'vendidos': vendidos.text,
                               'urlpdf': urlpdf.text,
-                              'urlimagen': imageUrl?.join('/').toString() ??
+                              'urlimagen': imageUrl?.join(',').toString() ??
                                   widget.data.urlimagen,
                               'urlyoutube': urlyoutube.text,
                             };

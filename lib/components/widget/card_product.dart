@@ -103,7 +103,7 @@ class _CardProductState extends State<CardProduct> {
                             Container(
                               decoration:
                                   const BoxDecoration(color: Colors.white),
-                              child: width < 600
+                              child: width < 1200
                                   ? Column(
                                       children: [
                                         MultiImagenes2(
@@ -241,6 +241,7 @@ class _CardProductState extends State<CardProduct> {
                                     padding: EdgeInsets.symmetric(vertical: 20),
                                     child: Text(
                                       "Descripcion del Producto",
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontFamily: "CenturyGothic",
                                         fontSize: 30,

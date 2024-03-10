@@ -31,6 +31,7 @@ class _ObtenerSectionPageState extends State<ObtenerSectionPage> {
           return const Center(
             child: Text(
               "NO SE ENCONTRO NADA",
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: "CenturyGothic",
                 fontSize: 30,

@@ -37,6 +37,11 @@ class _MultiImagenes2State extends State<MultiImagenes2> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 300,

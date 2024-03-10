@@ -167,7 +167,7 @@ class _AgregarproductosState extends State<Agregarproductos> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  width < 600
+                  width < 1730
                       ? ElevatedButton(
                           onPressed: () async {
                             Get.toNamed(Routes.mostrarproducto);
@@ -218,6 +218,8 @@ class _AgregarproductosState extends State<Agregarproductos> {
                         urlpdf.text = "";
                         controller.imagecapturada(null);
                         controller.listadeimagenes.clear();
+                        controller.items.clear();
+                        listadedescripcion!.clear();
                       });
                     },
                     style: ElevatedButton.styleFrom(

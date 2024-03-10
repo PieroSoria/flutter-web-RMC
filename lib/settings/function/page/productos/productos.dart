@@ -30,7 +30,7 @@ class _ProductosScreenState extends State<ProductosScreen> {
             fit: BoxFit.fill,
           ),
         ),
-        child: width > 600
+        child: width > 1730
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

@@ -43,7 +43,7 @@ class _NavbarState extends State<Navbar> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: 200,
+                      width: 180,
                       child: ButtonHover(
                         funcion: () {
                           controllerwidget.indexwidget(0);

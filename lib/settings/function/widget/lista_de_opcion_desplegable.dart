@@ -11,7 +11,8 @@ class ListaDedescripcion extends StatefulWidget {
     this.dropmenuitem,
     required this.press,
     required this.controller,
-    required this.pressedit, required this.titulo,
+    required this.pressedit,
+    required this.titulo,
   });
 
   @override
@@ -32,35 +33,41 @@ class _ListaDedescripcionState extends State<ListaDedescripcion> {
       children: [
         AnimatedContainer(
           duration: const Duration(milliseconds: 300),
-          child: ListTile(
-            title: SizedBox(
-              height: 50,
-              child: TextField(
-                controller: widget.controller,
-                decoration: InputDecoration(
-                  labelText: widget.titulo,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  suffix: IconButton(
-                    onPressed: widget.press,
-                    icon: const Icon(Icons.add),
-                  ),
+          child: SizedBox(
+            height: 60,
+            child: TextField(
+              style: const TextStyle(fontSize: 16),
+              controller: widget.controller,
+              decoration: InputDecoration(
+                labelText: widget.titulo,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                suffix: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      onPressed: widget.press,
+                      icon: const Icon(Icons.add),
+                    ),
+                    Container(
+                      child: widget.dropmenuitem != null
+                          ? IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  expanded = !expanded;
+                                });
+                              },
+                              icon: expanded
+                                  ? const Icon(Icons.arrow_drop_up)
+                                  : const Icon(Icons.arrow_drop_down_sharp),
+                            )
+                          : null,
+                    )
+                  ],
                 ),
               ),
             ),
-            trailing: widget.dropmenuitem != null
-                ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        expanded = !expanded;
-                      });
-                    },
-                    icon: expanded
-                        ? const Icon(Icons.arrow_drop_up)
-                        : const Icon(Icons.arrow_drop_down_sharp),
-                  )
-                : null,
           ),
         ),
         Container(
@@ -69,7 +76,11 @@ class _ListaDedescripcionState extends State<ListaDedescripcion> {
                   children: [
                     ...widget.dropmenuitem!.asMap().entries.map(
                           (entry) => ListTile(
-                            title: Text(entry.value),
+                            title: Text(
+                              entry.value,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
                             trailing: IconButton(
                               onPressed: () {
                                 widget.pressedit(entry.key);

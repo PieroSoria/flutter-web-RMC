@@ -105,6 +105,7 @@ class SettingsAdmin extends GetxController {
   }
 
   Future<void> getdataproducts() async {
+    listaproductos.clear();
     final data = await getproductos.mostrarlosproductos();
     listaproductos.assignAll(data);
   }
@@ -123,6 +124,7 @@ class SettingsAdmin extends GetxController {
     if (result) {
       imagecapturada(null);
       nombredelaimagen("");
+      await getdataproducts();
       Get.snackbar("Exito", "Se guardo el producto");
     } else {
       Get.snackbar("Opps!", "Error de la peticion");
@@ -133,7 +135,10 @@ class SettingsAdmin extends GetxController {
     final result = await getproductos.actualizarproductoporid(data);
     if (result) {
       imagecapturada2(null);
+      listadeimagenes2.clear();
+      items2.clear();
       nombredelaimagen2("");
+      await getdataproducts();
       Get.snackbar("Exito", "Producto Actualizado correctamente");
     } else {
       Get.snackbar("Opps!", "Hubo un problema");

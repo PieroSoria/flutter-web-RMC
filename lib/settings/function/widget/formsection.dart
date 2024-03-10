@@ -1,14 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:rmc_bussiness/connection/api/section/getsection.dart';
 import 'package:rmc_bussiness/controller/data/controller_products.dart';
 import 'package:rmc_bussiness/settings/function/controller/admin_controller.dart';
 import 'package:rmc_bussiness/settings/function/widget/inputformcustom.dart';
 import 'package:crypto/crypto.dart';
-import 'package:rmc_bussiness/settings/function/widget/lista_de_opcion_desplegable.dart';
+import 'package:rmc_bussiness/settings/function/widget/multi_imagenes.dart';
 
 class FormSection extends StatefulWidget {
   final String id;
@@ -61,7 +60,7 @@ class _FormSectionState extends State<FormSection> {
   final alto = TextEditingController();
   final usescroll = TextEditingController();
   final imagendata = TextEditingController();
-  List<String> listadeimagenes = [];
+
   String? pageview;
 
   @override
@@ -443,35 +442,12 @@ class _FormSectionState extends State<FormSection> {
                 case "ImagenSection":
                   return Column(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          controlleradmin.capturarimagen();
+                      MultiImagenes(
+                        press: () async {
+                          await controlleradmin.capturarimagen();
+                          controlleradmin.changeitems();
                         },
-                        child: Obx(
-                          () => Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image:
-                                    controlleradmin.imagecapturada.value != null
-                                        ? MemoryImage(controlleradmin
-                                            .imagecapturada
-                                            .value!) as ImageProvider
-                                        : const AssetImage(
-                                            'image/agregeproduct.jpg'),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 400,
-                        child: ListaDedescripcion(
-                          press: () {},
-                          controller: imagendata,
-                          pressedit: (int index) {},
-                          titulo: '',
-                        ),
+                        items: controlleradmin.items,
                       ),
                     ],
                   );
@@ -511,6 +487,9 @@ class _FormSectionState extends State<FormSection> {
     var id = utf8.encode(
         "${titulo.text}/${section.text}/${controlleradmin.pageview.value}");
     var idl = sha256.convert(id);
+    final imageUrl = await controlleradmin.getproductos
+        .subirMultiplesImagenesProductos(
+            multiImagenes: controlleradmin.listadeimagenes);
     Map<String, dynamic> sections = {
       'id': idl.toString(),
       'section': controlleradmin.sectionmodeide.value,
@@ -522,7 +501,7 @@ class _FormSectionState extends State<FormSection> {
       'ancho': ancho.text,
       'alto': alto.text,
       'usescroll': usescroll.text,
-      'listadebanner': listadeimagenes.join('/').toString(),
+      'listadebanner': imageUrl?.join(',').toString(),
       'pageview': controlleradmin.pageview.value,
     };
 
@@ -548,6 +527,9 @@ class _FormSectionState extends State<FormSection> {
 
   Future<void> actualizardatos() async {
     final products = await controllerproduct.getproductbyid(idproducto.text);
+    final imageUrl = await controlleradmin.getproductos
+        .subirMultiplesImagenesProductos(
+            multiImagenes: controlleradmin.listadeimagenes);
     Map<String, dynamic> sections = {
       'id': widget.id,
       'section': controlleradmin.sectionmodeide.value,
@@ -559,7 +541,7 @@ class _FormSectionState extends State<FormSection> {
       'ancho': ancho.text,
       'alto': alto.text,
       'usescroll': usescroll.text,
-      'listadebanner': listadeimagenes.join('/').toString(),
+      'listadebanner': imageUrl?.join('/').toString(),
       'pageview': controlleradmin.pageview.value,
     };
     bool result = await controlleradmin.actualizarsection(sections);

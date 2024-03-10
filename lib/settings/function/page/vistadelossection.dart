@@ -31,7 +31,6 @@ class _VistadelosSectionState extends State<VistadelosSection> {
     controlleradmin.refreshlistsection(controlleradmin.pageview.value);
   }
 
-  // Future<void> inserteproduts =
 
   @override
   Widget build(BuildContext context) {

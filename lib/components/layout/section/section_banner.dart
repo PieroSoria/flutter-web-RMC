@@ -4,11 +4,8 @@ import 'package:flutter/material.dart';
 class SectionBanners extends StatefulWidget {
   const SectionBanners({
     super.key,
-    required this.width,
     required this.listaimagen,
   });
-
-  final double width;
   final List<String> listaimagen;
 
   @override
@@ -35,11 +32,12 @@ class _SectionBannersState extends State<SectionBanners> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return SizedBox(
       child: CarouselSlider(
         items: banners,
         options: CarouselOptions(
-          height: widget.width > 600 ? 500 : 200,
+          height: width > 600 ? 500 : 200,
           aspectRatio: 16 / 9,
           viewportFraction: 0.8,
           initialPage: 0,

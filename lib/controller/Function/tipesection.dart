@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rmc_bussiness/components/widget/imagendesection.dart';
+import 'package:rmc_bussiness/components/layout/section/section_banner.dart';
 
 import '../../components/layout/section/section_beneficios.dart';
 import '../../components/layout/section/section_caract_product.dart';
@@ -137,10 +137,8 @@ class _TipeSectionState extends State<TipeSection> {
             },
           );
         } else if (sections.section == "ImagenSection") {
-          return ImagenSection(
-            imagenurl: sections.imagensecion,
-            width: double.infinity,
-            height: 350,
+          return const SectionBanners(
+            listaimagen: [],
           );
         } else {
           return const Center();

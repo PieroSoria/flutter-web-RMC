@@ -21,12 +21,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Column(
         children: [
           SectionBanners(
-            width: width,
             listaimagen: const [],
           ),
           const ProductosDestacados(

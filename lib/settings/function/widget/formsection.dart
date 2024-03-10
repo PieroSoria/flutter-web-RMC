@@ -66,6 +66,7 @@ class _FormSectionState extends State<FormSection> {
   @override
   void initState() {
     controlleradmin.sectionmodeide(sectionmode.first);
+    controlleradmin.refreshlistsection(listadepageview.first);
     super.initState();
   }
 
@@ -129,6 +130,7 @@ class _FormSectionState extends State<FormSection> {
                     setState(() {
                       pageview = value;
                       controlleradmin.pageview(value);
+                      controlleradmin.refreshlistsection(value!);
                     });
                   },
                 ),

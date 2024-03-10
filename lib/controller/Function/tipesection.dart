@@ -125,20 +125,10 @@ class _TipeSectionState extends State<TipeSection> {
             contenido: sections.contenido,
             product: sections.producto!,
             background: Colors.white,
-            funcion: () async {
-              final data =
-                  await controllerproduct.getproductbyid(sections.producto!.id);
-              bool resul = await controllerproduct.saveidbyproduct(data);
-              if (resul) {
-                Get.toNamed(
-                  '/Cardproduct',
-                );
-              }
-            },
           );
         } else if (sections.section == "ImagenSection") {
-          return const SectionBanners(
-            listaimagen: [],
+          return SectionBanners(
+            listaimagen: sections.imagensecion,
           );
         } else {
           return const Center();

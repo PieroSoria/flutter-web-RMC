@@ -114,7 +114,11 @@ class _ProductosDestacadosState extends State<ProductosDestacados> {
                                   : snapshot.data!.length,
                           itemBuilder: (context, index) {
                             return CardProductMuestra(
-                              urlimagen: data[index].urlimagen,
+                              urlimagen: data[index]
+                                  .urlimagen
+                                  .toString()
+                                  .split(',')
+                                  .first,
                               nombreproduct: data[index].nombre,
                               namebutton: 'leer mas',
                               funcion: () async {

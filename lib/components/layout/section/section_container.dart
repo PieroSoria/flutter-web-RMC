@@ -95,7 +95,10 @@ class _SectionContainerState extends State<SectionContainer> {
                             width: 300,
                             height: 350,
                             child: CardProductMuestra(
-                              urlimagen: widget.product.urlimagen,
+                              urlimagen: widget.product.urlimagen
+                                  .toString()
+                                  .split(',')
+                                  .first,
                               nombreproduct: widget.product.nombre,
                               namebutton: "Leer Mas",
                               funcion: () async {

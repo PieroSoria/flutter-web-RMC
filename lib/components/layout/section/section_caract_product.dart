@@ -10,13 +10,14 @@ class CaracteristicasdeProduct extends StatefulWidget {
   final String contenido;
   final Products product;
   final Color background;
-  final VoidCallback funcion;
-  const CaracteristicasdeProduct(
-      {super.key,
-      required this.titulo,
-      required this.contenido,
-      required this.background,
-      required this.product, required this.funcion});
+
+  const CaracteristicasdeProduct({
+    super.key,
+    required this.titulo,
+    required this.contenido,
+    required this.background,
+    required this.product,
+  });
 
   @override
   State<CaracteristicasdeProduct> createState() =>
@@ -170,10 +171,19 @@ class _CaracteristicasdeProductState extends State<CaracteristicasdeProduct> {
                     width: 300,
                     height: 350,
                     child: CardProductMuestra(
-                      urlimagen: widget.product.urlimagen,
+                      urlimagen:
+                          widget.product.urlimagen.toString().split(',').first,
                       nombreproduct: widget.product.nombre,
                       namebutton: "Leer mas",
-                      funcion: widget.funcion,
+                      funcion: () async {
+                        bool resul = await controllerproduct
+                            .saveidbyproduct(widget.product);
+                        if (resul) {
+                          Get.toNamed(
+                            '/Cardproduct',
+                          );
+                        }
+                      },
                       categoria: widget.product.categoria,
                     ),
                   ),

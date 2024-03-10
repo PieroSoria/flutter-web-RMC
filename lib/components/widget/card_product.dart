@@ -6,6 +6,7 @@ import 'package:rmc_bussiness/components/widget/butonhoverwhat.dart';
 import 'package:rmc_bussiness/connection/api/whatsapp/apiwhatsapp.dart';
 import 'package:rmc_bussiness/controller/data/controller_products.dart';
 import 'package:rmc_bussiness/interface/model/products.dart';
+import 'package:rmc_bussiness/settings/function/widget/multi_imagen_network.dart';
 import 'package:rmc_bussiness/settings/routes/routes.dart';
 
 import '../layout/articulo/promociondeproduct.dart';
@@ -90,6 +91,9 @@ class _CardProductState extends State<CardProduct> {
               } else {
                 return Obx(() {
                   final data = controllerproducs.productoseleccionado.value;
+                  List<String> items =
+                      data!.urlimagen.toString().split(',').toList();
+                  debugPrint(items.toString());
                   return Center(
                     child: Container(
                       decoration: const BoxDecoration(color: Colors.white),
@@ -102,10 +106,12 @@ class _CardProductState extends State<CardProduct> {
                               child: width < 600
                                   ? Column(
                                       children: [
-                                        Image.network(
-                                          data!.urlimagen,
-                                          width: 300,
-                                          height: 300,
+                                        MultiImagenes2(
+                                          press: () {},
+                                          string: true,
+                                          itemsnew: null,
+                                          items: items,
+                                          button: false,
                                         ),
                                         SizedBox(
                                           height: MediaQuery.of(context)
@@ -163,10 +169,12 @@ class _CardProductState extends State<CardProduct> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       children: [
-                                        Image.network(
-                                          data!.urlimagen,
-                                          width: 300,
-                                          height: 300,
+                                        MultiImagenes2(
+                                          press: () {},
+                                          string: true,
+                                          itemsnew: null,
+                                          items: items,
+                                          button: false,
                                         ),
                                         SizedBox(
                                           height: MediaQuery.of(context)
@@ -190,7 +198,9 @@ class _CardProductState extends State<CardProduct> {
                                               SizedBox(
                                                 width: 400,
                                                 child: Text(
-                                                  data.comentario,
+                                                  data.comentario != ""
+                                                      ? data.comentario
+                                                      : "No se encontraron comentarios",
                                                   textAlign: TextAlign.center,
                                                   style: const TextStyle(
                                                     fontSize: 16,

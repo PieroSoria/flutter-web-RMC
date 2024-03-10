@@ -6,6 +6,7 @@ import 'package:rmc_bussiness/settings/function/controller/admin_controller.dart
 class MultiImagenes2 extends StatefulWidget {
   final List<String>? items;
   final bool string;
+  final bool button;
   final List<Widget>? itemsnew;
   final VoidCallback press;
   const MultiImagenes2(
@@ -13,7 +14,8 @@ class MultiImagenes2 extends StatefulWidget {
       this.items,
       required this.press,
       required this.string,
-      required this.itemsnew});
+      required this.itemsnew,
+      this.button = true});
 
   @override
   State<MultiImagenes2> createState() => _MultiImagenes2State();
@@ -41,8 +43,10 @@ class _MultiImagenes2State extends State<MultiImagenes2> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          ElevatedButton(
-              onPressed: widget.press, child: const Text("Buscar Imagenes")),
+          widget.button
+              ? ElevatedButton(
+                  onPressed: widget.press, child: const Text("Buscar Imagenes"))
+              : const SizedBox.shrink(),
           SizedBox(
             width: 400,
             height: 200,

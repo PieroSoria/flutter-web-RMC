@@ -46,6 +46,9 @@ dependencies:
   crypto: ^3.0.3
   image_picker: ^1.0.7
   carousel_slider: ^4.2.1
+  banner_carousel: ^1.2.1
+  flutter_custom_carousel_slider: ^1.2.0
+  infinite_carousel: ^1.1.1
   
   
   

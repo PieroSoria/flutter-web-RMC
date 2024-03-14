@@ -41,7 +41,6 @@ class _ObtenerSectionPageState extends State<ObtenerSectionPage> {
           );
         } else {
           final section = snapshot.data!;
-
           return ListView.builder(
             itemCount: section.length,
             itemBuilder: (context, index) {
@@ -49,13 +48,12 @@ class _ObtenerSectionPageState extends State<ObtenerSectionPage> {
                 return Column(
                   children: [
                     SizedBox(
-                      width: 1200,
                       child: TipeSection(index: index),
                     ),
                     const FoorterPage(),
                   ],
                 );
-              } else {
+              }else {
                 return SizedBox(
                   width: 1200,
                   child: TipeSection(index: index),

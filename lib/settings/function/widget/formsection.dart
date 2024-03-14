@@ -485,87 +485,44 @@ class _FormSectionState extends State<FormSection> {
   }
 
   Future<void> inserciondedatos() async {
-    if (idproducto.text != "") {
-      final products = await controllerproduct.getproductbyid(idproducto.text);
-      var id = utf8.encode(
-          "${titulo.text}/${section.text}/${controlleradmin.pageview.value}");
-      var idl = sha256.convert(id);
-      final imageUrl = await controlleradmin.getproductos
-          .subirMultiplesImagenesProductos(
-              multiImagenes: controlleradmin.listadeimagenes);
-      Map<String, dynamic> sections = {
-        'id': idl.toString(),
-        'section': controlleradmin.sectionmodeide.value,
-        'titulo': titulo.text,
-        'subtitulo': subtitulo.text,
-        'contenido': contenido.text,
-        'reves': reves.text,
-        'producto': products.id.toString(),
-        'ancho': ancho.text,
-        'alto': alto.text,
-        'usescroll': usescroll.text,
-        'listadebanner': imageUrl?.join(',').toString() ??
-            "assets/icons2/galeria-de-imagenes.png",
-        'pageview': controlleradmin.pageview.value,
-      };
-      bool result = await getsection.createSectiondb(sections);
-      if (result) {
-        setState(() {
-          section.text = '';
-          titulo.text = '';
-          subtitulo.text = '';
-          contenido.text = '';
-          reves.text = '';
-          idproducto.text = '';
-          ancho.text = '';
-          alto.text = '';
-          usescroll.text = '';
-        });
-        controlleradmin.refreshlistsection(controlleradmin.pageview.value);
-        Get.snackbar("Exito", "Se envio los datos");
-      } else {
-        Get.snackbar("Opps!", "Error ");
-      }
+    var id = utf8.encode(
+        "${titulo.text}/${section.text}/${controlleradmin.pageview.value}");
+    var idl = sha256.convert(id);
+    final imageUrl = await controlleradmin.getproductos
+        .subirMultiplesImagenesProductos(
+            multiImagenes: controlleradmin.listadeimagenes);
+    Map<String, dynamic> sections = {
+      'id': idl.toString(),
+      'section': controlleradmin.sectionmodeide.value,
+      'titulo': titulo.text,
+      'subtitulo': subtitulo.text,
+      'contenido': contenido.text,
+      'reves': reves.text,
+      'producto': idproducto.text,
+      'ancho': ancho.text,
+      'alto': alto.text,
+      'usescroll': usescroll.text,
+      'listadebanner': imageUrl?.join(',').toString() ??
+          "assets/icons2/galeria-de-imagenes.png",
+      'pageview': controlleradmin.pageview.value,
+    };
+    bool result = await getsection.createSectiondb(sections);
+    if (result) {
+      setState(() {
+        section.text = '';
+        titulo.text = '';
+        subtitulo.text = '';
+        contenido.text = '';
+        reves.text = '';
+        idproducto.text = '';
+        ancho.text = '';
+        alto.text = '';
+        usescroll.text = '';
+      });
+      controlleradmin.refreshlistsection(controlleradmin.pageview.value);
+      Get.snackbar("Exito", "Se envio los datos");
     } else {
-      var id = utf8.encode(
-          "${titulo.text}/${section.text}/${controlleradmin.pageview.value}");
-      var idl = sha256.convert(id);
-      final imageUrl = await controlleradmin.getproductos
-          .subirMultiplesImagenesProductos(
-              multiImagenes: controlleradmin.listadeimagenes);
-      Map<String, dynamic> sections = {
-        'id': idl.toString(),
-        'section': controlleradmin.sectionmodeide.value,
-        'titulo': titulo.text,
-        'subtitulo': subtitulo.text,
-        'contenido': contenido.text,
-        'reves': reves.text,
-        'producto': "",
-        'ancho': ancho.text,
-        'alto': alto.text,
-        'usescroll': usescroll.text,
-        'listadebanner': imageUrl?.join(',').toString() ??
-            "assets/icons2/galeria-de-imagenes.png",
-        'pageview': controlleradmin.pageview.value,
-      };
-      bool result = await getsection.createSectiondb(sections);
-      if (result) {
-        setState(() {
-          section.text = '';
-          titulo.text = '';
-          subtitulo.text = '';
-          contenido.text = '';
-          reves.text = '';
-          idproducto.text = '';
-          ancho.text = '';
-          alto.text = '';
-          usescroll.text = '';
-        });
-        controlleradmin.refreshlistsection(controlleradmin.pageview.value);
-        Get.snackbar("Exito", "Se envio los datos");
-      } else {
-        Get.snackbar("Opps!", "Error ");
-      }
+      Get.snackbar("Opps!", "Error ");
     }
   }
 
@@ -585,7 +542,7 @@ class _FormSectionState extends State<FormSection> {
       'ancho': ancho.text,
       'alto': alto.text,
       'usescroll': usescroll.text,
-      'listadebanner': imageUrl?.join('/').toString(),
+      'listadebanner': imageUrl?.join(',').toString(),
       'pageview': controlleradmin.pageview.value,
     };
     bool result = await controlleradmin.actualizarsection(sections);

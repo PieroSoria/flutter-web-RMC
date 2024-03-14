@@ -38,7 +38,9 @@ class _IndexState extends State<Index> {
   @override
   void initState() {
     selectMenu = sideMenustile.first;
-    _currentwidget = const Home(pageview: 'Home',);
+    _currentwidget = const Home(
+      pageview: 'Home',
+    );
     super.initState();
   }
 
@@ -68,11 +70,15 @@ class _IndexState extends State<Index> {
                   setState(
                     () {
                       selectMenu = menu;
-                      if (selectMenu == sideMenustile[2]) {
-                        controllerwidget.futuresection.clear();
+                      if (selectMenu == sideMenustile.first) {
+                        controllerwidget.indexwidget(1);
+                      } else if (selectMenu == sideMenustile[1]) {
+                        controllerwidget.indexwidget(6);
+                      } else if (selectMenu == sideMenustile[2]) {
                         controllerwidget.indexwidget(9);
+                      } else if (selectMenu == sideMenustile[3]) {
+                        controllerwidget.indexwidget(10);
                       } else if (selectMenu == sideMenustile[4]) {
-                        controllerwidget.futuresection.clear();
                         controllerwidget.indexwidget(14);
                       } else if (selectMenu == sideMenustile[5]) {
                         showDialog(
@@ -129,7 +135,9 @@ class _IndexState extends State<Index> {
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
         child: Obx(() {
           if (controllerwidget.indexwidget.value == 0) {
-            return const Home(pageview: 'Home',);
+            return const Home(
+              pageview: 'Home',
+            );
           } else if (controllerwidget.indexwidget.value == 1) {
             return const SolucionesScreen(
               pageview: 'Soluciones',

@@ -44,7 +44,6 @@ class _TipeSectionState extends State<TipeSection> {
       width: double.infinity,
       child: Obx(() {
         final sections = controllerwidget.futuresection[widget.index];
-
         if (sections.section == "Container") {
           return SectionContainer(
             titulo: sections.titulo,

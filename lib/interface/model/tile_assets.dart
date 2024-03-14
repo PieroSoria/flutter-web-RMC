@@ -10,7 +10,7 @@ List<Tileasset> sideMenustile = [
     title: "Soluciones",
     dropdownItems: [
       "Retail",
-      "Restaurante ",
+      "Restaurante",
       "Autoservicio",
       "Almacen e inventarios"
     ],

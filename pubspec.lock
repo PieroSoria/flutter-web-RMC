@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  banner_carousel:
+    dependency: "direct main"
+    description:
+      name: banner_carousel
+      sha256: "816a2be32e04f4be73224754f4646b94cbf6e9aa062bed9577691fcc6d62b48e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -142,6 +150,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_custom_carousel_slider:
+    dependency: "direct main"
+    description:
+      name: flutter_custom_carousel_slider
+      sha256: "0f669f2b5443115a9273fa2f95e0b4f9825ba937e8905e6857a36d57ed699eb2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -280,6 +296,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
+  infinite_carousel:
+    dependency: "direct main"
+    description:
+      name: infinite_carousel
+      sha256: "572967b028f4803e5f4be9adee5760b6c4834eb6912b0f2292f2d93a51912ba0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   leak_tracker:
     dependency: transitive
     description:

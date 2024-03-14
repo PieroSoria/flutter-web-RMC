@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ButtonHover extends StatefulWidget {
-  final Function() funcion;
+  final VoidCallback funcion;
   final String titulo;
   final Color ini;
   final Color fin;
@@ -39,6 +39,7 @@ class _ButtonHoverState extends State<ButtonHover> {
           decoration: const BoxDecoration(),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
+            margin: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
               color: hover ? widget.ini : widget.fin,
               borderRadius: BorderRadius.circular(10),
@@ -46,6 +47,7 @@ class _ButtonHoverState extends State<ButtonHover> {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Text(
               widget.titulo,
+              maxLines: 2,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: hover ? widget.fin : widget.ini,

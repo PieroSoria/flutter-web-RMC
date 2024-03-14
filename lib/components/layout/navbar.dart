@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hover_menu/hover_menu.dart';
 import 'package:rmc_bussiness/components/widget/buttonhover.dart';
 import 'package:rmc_bussiness/components/widget/sidemenutile.dart';
 import 'package:rmc_bussiness/components/widget/sidemenutile2.dart';
@@ -85,17 +86,14 @@ class _NavbarState extends State<Navbar> {
         : Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                width: 200,
-                child: ButtonHover(
-                  funcion: () {
-                    controllerwidget.indexwidget(0);
-                  },
-                  titulo: 'RMCBussines',
-                  ini: const Color.fromARGB(255, 255, 163, 52),
-                  fin: const Color.fromARGB(255, 0, 112, 192),
-                  fontsize: 20,
-                ),
+              ButtonHover(
+                funcion: () {
+                  controllerwidget.indexwidget(0);
+                },
+                titulo: 'RMC Solutions & Bussines',
+                ini: const Color.fromARGB(255, 255, 163, 52),
+                fin: const Color.fromARGB(255, 0, 112, 192),
+                fontsize: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

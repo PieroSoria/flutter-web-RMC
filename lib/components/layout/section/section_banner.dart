@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:infinite_carousel/infinite_carousel.dart';
 
 class SectionBanners extends StatefulWidget {
   const SectionBanners({
@@ -13,6 +14,8 @@ class SectionBanners extends StatefulWidget {
 }
 
 class _SectionBannersState extends State<SectionBanners> {
+  int selectedIndex = 0;
+  final controller = InfiniteScrollController(initialItem: 0);
   List<Widget> banners = [];
 
   @override
@@ -23,9 +26,12 @@ class _SectionBannersState extends State<SectionBanners> {
 
   List<Widget> _buildBannerWidgets() {
     return widget.listaimagen.map((url) {
-      return Image.network(
-        url,
-        fit: BoxFit.cover,
+      return Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: NetworkImage(url),
+          fit: BoxFit.fill,
+        )),
       );
     }).toList();
   }
@@ -37,9 +43,9 @@ class _SectionBannersState extends State<SectionBanners> {
       child: CarouselSlider(
         items: banners,
         options: CarouselOptions(
-          height: width > 600 ? 500 : 200,
+          height: width > 600 ? 600 : 200,
           aspectRatio: 16 / 9,
-          viewportFraction: 0.8,
+          viewportFraction: 1,
           initialPage: 0,
           enableInfiniteScroll: true,
           reverse: false,
@@ -51,6 +57,7 @@ class _SectionBannersState extends State<SectionBanners> {
           enlargeFactor: 0.3,
           onPageChanged: null,
           scrollDirection: Axis.horizontal,
+          clipBehavior: Clip.none,
         ),
       ),
     );
